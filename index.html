@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Part 1 of 2. What Claude Code is, in plain English, and how to install it on a Windows PC in about ten minutes.">
+<meta property="og:title" content="Claude Code Day One">
+<meta property="og:description" content="Part 1 of 2. What Claude Code is, in plain English, and how to install it on a Windows PC in about ten minutes.">
+<title>Claude Code Day One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F5F6F8; --surface:#FFFFFF; --ink:#15181D; --ink-2:#3A414B; --muted:#5F6874; --line:#DDE1E7; --line-strong:#C9CFD8;
+  --accent:#C4603E; --accent-ink:#FFFFFF; --accent-soft:#F7E9E2; --accent-line:#E8C9BB;
+  --term-bg:#0E1116; --term-ink:#D9DEE6; --term-muted:#7C8794; --term-line:#232A33; --term-accent:#E5866A; --term-head:#161B22;
+  --ok:#2E7D5B; --kbd-bg:#EEF0F3; --kbd-line:#CFD4DB;
+  --sans:"Schibsted Grotesk",-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1216; --surface:#161A20; --ink:#E7EAEF; --ink-2:#C2C8D1; --muted:#98A1AD; --line:#262C35; --line-strong:#343C47;
+    --accent:#E5866A; --accent-ink:#1A120E; --accent-soft:#2A1D18; --accent-line:#4A2E24;
+    --term-bg:#0A0D11; --term-ink:#D9DEE6; --term-muted:#7C8794; --term-line:#1F262E; --term-accent:#E5866A; --term-head:#12171D;
+    --ok:#5CC49A; --kbd-bg:#1E242C; --kbd-line:#343C47;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1216; --surface:#161A20; --ink:#E7EAEF; --ink-2:#C2C8D1; --muted:#98A1AD; --line:#262C35; --line-strong:#343C47;
+  --accent:#E5866A; --accent-ink:#1A120E; --accent-soft:#2A1D18; --accent-line:#4A2E24;
+  --term-bg:#0A0D11; --term-ink:#D9DEE6; --term-muted:#7C8794; --term-line:#1F262E; --term-accent:#E5866A; --term-head:#12171D;
+  --ok:#5CC49A; --kbd-bg:#1E242C; --kbd-line:#343C47;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-line)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code,kbd,pre{font-family:var(--mono)}
+code{font-size:.86em;background:var(--kbd-bg);border:1px solid var(--kbd-line);border-radius:5px;padding:.08em .38em;white-space:nowrap}
+kbd{font-size:.82em;background:var(--kbd-bg);border:1px solid var(--kbd-line);border-bottom-width:2px;border-radius:5px;padding:.1em .45em;white-space:nowrap;color:var(--ink)}
+h1,h2,h3{text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(38px,5.6vw,56px);font-weight:800;letter-spacing:-.025em}
+h2{font-size:26px;font-weight:700;letter-spacing:-.015em}
+h3{font-size:17px;font-weight:700;margin-top:26px}
+p{margin:0 0 14px}
+.page{display:grid;grid-template-columns:1fr;max-width:1160px;margin:0 auto;padding:40px 22px 90px}
+@media (min-width:1080px){.page{grid-template-columns:220px minmax(0,720px);column-gap:64px;padding-top:56px}}
+.rail{display:none}
+@media (min-width:1080px){
+  .rail{display:block;position:sticky;top:32px;align-self:start;font-size:13.5px}
+  .rail a{display:flex;gap:10px;align-items:baseline;color:var(--muted);border:0;padding:6px 0;border-left:2px solid var(--line);padding-left:14px}
+  .rail a:hover{color:var(--ink)}
+  .rail a b{font-family:var(--mono);font-weight:500;font-size:11.5px;color:var(--muted);min-width:1.6em}
+  .rail .rail-head{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:500}
+  .rail .rail-copy{margin-top:22px;padding-left:14px}
+}
+main{max-width:720px;min-width:0}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
+.eyebrow b{color:var(--accent);font-weight:600}
+.dek{font-size:20px;line-height:1.45;color:var(--ink-2);margin:18px 0 26px;max-width:620px;text-wrap:pretty}
+.route{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);margin:0 0 8px}
+.route div{padding:14px 16px;border-right:1px solid var(--line)}
+.route div:last-child{border-right:0}
+.route b{display:block;font-size:14.5px;font-weight:700}
+.route span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+.route small{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+@media (max-width:640px){.route{grid-template-columns:1fr 1fr}.route div:nth-child(2){border-right:0}.route div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.route-note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+section{padding-top:52px;margin-top:8px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0;padding-top:44px}
+.step{font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:600;letter-spacing:.02em;margin-bottom:10px;display:flex;gap:12px;align-items:baseline}
+.step em{font-style:normal;color:var(--muted);font-weight:400}
+section > p{max-width:66ch}
+ul{padding-left:20px;margin:0 0 14px}
+li{margin-bottom:8px;max-width:66ch}
+li::marker{color:var(--muted)}
+ol{padding-left:22px;margin:0 0 14px}
+ol li{margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr;gap:16px;margin:18px 0 6px}
+@media (min-width:700px){.two{grid-template-columns:1fr 1fr}}
+.opt{border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;background:var(--surface)}
+.opt h3{margin:0 0 6px;font-size:16px}
+.opt p{font-size:15px;color:var(--ink-2)}
+.opt .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--kbd-bg);border:1px solid var(--kbd-line);border-radius:999px;padding:2px 9px;margin-bottom:10px}
+.opt .tag.hot{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-line)}
+.examples{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0 8px;padding:0;list-style:none}
+@media (min-width:700px){.examples{grid-template-columns:1fr 1fr}}
+.examples li{margin:0;border:1px solid var(--line);border-radius:10px;padding:11px 14px;background:var(--surface);font-size:15px;line-height:1.45;color:var(--ink-2);max-width:none}
+.examples li::before{content:"\201C";color:var(--accent);font-weight:800;margin-right:2px}
+.examples li::after{content:"\201D";color:var(--accent);font-weight:800;margin-left:2px}
+.copy{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--term-ink);background:var(--term-head);border:1px solid var(--term-line);border-radius:7px;padding:5px 11px;cursor:pointer;transition:background .15s,color .15s}
+.copy:hover{background:#1F2730}
+.copy.done{color:#0A0D11;background:var(--term-accent);border-color:var(--term-accent)}
+.prompt{background:var(--term-bg);border:1px solid var(--term-line);border-radius:12px;margin:20px 0 10px;overflow:hidden}
+.prompt-head{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--term-head);border-bottom:1px solid var(--term-line)}
+.prompt-head .dot{width:10px;height:10px;border-radius:50%;background:var(--term-accent);flex:none}
+.prompt-head .name{font-family:var(--mono);font-size:12.5px;color:var(--term-ink)}
+.prompt-head .meta{font-family:var(--mono);font-size:11.5px;color:var(--term-muted)}
+.prompt-head .copy{margin-left:auto;background:var(--term-accent);color:#0A0D11;border-color:var(--term-accent);font-size:13px;padding:7px 14px}
+.prompt-head .copy:hover{background:#F09A80}
+.prompt-head .copy.done{background:#D9DEE6;border-color:#D9DEE6}
+.prompt pre{margin:0;padding:18px 20px 22px;color:var(--term-ink);font-size:12.75px;line-height:1.6;max-height:62vh;overflow:auto;white-space:pre-wrap;word-break:break-word}
+.prompt-foot{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13.5px;color:var(--muted);margin:10px 2px 0}
+.callout{border:1px solid var(--accent-line);background:var(--accent-soft);border-radius:12px;padding:16px 18px;margin:20px 0;font-size:15px;line-height:1.55}
+.callout b{color:var(--ink)}
+.callout p:last-child{margin:0}
+.callout ol{margin:8px 0 0}
+.callout ol li:last-child{margin-bottom:0}
+.stop{border:1px solid var(--line-strong);background:var(--surface);border-radius:12px;padding:18px 20px;margin:26px 0 0}
+.stop h3{margin:0 0 6px}
+.stop p{margin:0;font-size:15.5px;color:var(--ink-2)}
+.dialog{background:var(--term-bg);border:1px solid var(--term-line);border-radius:10px;padding:16px 18px;margin:18px 0 8px;font-family:var(--mono);font-size:12.75px;line-height:1.7;color:var(--term-ink);overflow-x:auto}
+.dialog .t{color:var(--term-muted);text-transform:uppercase;letter-spacing:.08em;font-size:10.5px}
+.dialog .c{color:#fff;font-weight:600}
+.dialog .d{color:var(--term-muted)}
+.dialog .q{margin-top:10px}
+.dialog .o{padding-left:1.6em;text-indent:-1.6em;color:var(--term-muted)}
+.dialog .o.sel{color:var(--term-accent)}
+.cap{font-size:13.5px;color:var(--muted);margin:0 0 6px;max-width:66ch}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 6px;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+th{text-align:left;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:0 12px 8px 0;border-bottom:1px solid var(--line-strong)}
+td{padding:9px 12px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{white-space:nowrap;width:30%}
+tr:last-child td{border-bottom:0}
+.cheat{display:grid;grid-template-columns:1fr;gap:22px;margin-top:8px}
+@media (min-width:700px){.cheat{grid-template-columns:1fr 1fr}}
+.cheat h3{margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cheat table{margin-top:6px}
+.cheat td:first-child{width:auto;padding-right:14px}
+.modes{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0 8px}
+@media (min-width:700px){.modes{grid-template-columns:repeat(3,1fr)}}
+.mode{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface);font-size:14.5px}
+.mode b{display:block;font-size:15px;margin-bottom:2px}
+.mode .pill{float:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ok);border:1px solid currentColor;border-radius:999px;padding:1px 7px;margin-left:8px;margin-top:2px}
+.habits li{margin-bottom:10px}
+.habits b{color:var(--ink)}
+.say{margin:10px 0 0;padding:0;list-style:none}
+.say li{max-width:none;font-size:15px;color:var(--ink-2);padding:7px 0;border-top:1px dashed var(--line);margin:0}
+.say li:first-child{border-top:0}
+.say li::before{content:"You: ";font-weight:700;color:var(--ink)}
+.check{list-style:none;padding:0;margin:14px 0}
+.check li{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface);margin-bottom:8px;max-width:none;font-size:15.5px}
+.check li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border:2px solid var(--line-strong);border-radius:5px}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);max-width:66ch}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <nav class="rail" aria-label="Sections">
+    <p class="rail-head">Part 1 · Get set up</p>
+    <a href="#s0"><b>·</b>What this is</a>
+    <a href="#s1"><b>1</b>Have these ready</a>
+    <a href="#s2"><b>2</b>Install the app</a>
+    <a href="#s3"><b>3</b>Pick a folder</a>
+    <a href="#s4"><b>4</b>Look around</a>
+    <a href="#s5"><b>5</b>Stop here</a>
+  </nav>
+
+  <main>
+    <header>
+      <div class="eyebrow"><b>Part 1 of 2</b> Get set up</div>
+      <h1>Claude Code Day One</h1>
+      <p class="dek">Claude Code is an AI assistant that works on your computer, not just in a chat window. This first part gets it installed on your PC: four small steps, about 10 minutes, no technical knowledge needed. Part 2 is one message you paste, and it does everything else.</p>
+      <div class="route">
+        <div><b>Account</b><span>~5 min</span><small>Claude Pro or Max</small></div>
+        <div><b>Install the app</b><span>~3 min</span><small>Like any Windows program</small></div>
+        <div><b>Open it</b><span>~2 min</span><small>Sign in, click Code</small></div>
+        <div><b>Pick a folder</b><span>~1 min</span><small>Where Claude will work</small></div>
+      </div>
+      <p class="route-note">Written for a PC running Windows 10 or 11.</p>
+    </header>
+
+    <section id="s0">
+      <div class="step">START HERE <em>One minute</em></div>
+      <h2>What this is</h2>
+      <p>You may have used Claude or ChatGPT in a browser: you type, it answers. Claude Code is the same intelligence, but it can <b>act</b>. It lives on your computer, sees the files in a folder you choose, and can create, edit, organize and build things there.</p>
+      <div class="two">
+        <div class="opt">
+          <span class="tag">In the browser</span>
+          <h3>Claude, the chat</h3>
+          <p>Like a consultant on the phone. Gives you advice and drafts; you do the doing.</p>
+        </div>
+        <div class="opt">
+          <span class="tag hot">On your computer</span>
+          <h3>Claude Code</h3>
+          <p>Like a capable resident. Does the work itself, shows you what it did, and asks when unsure. You supervise.</p>
+        </div>
+      </div>
+      <p style="margin-top:18px">Things it's genuinely good at for someone like you. You'd say, in plain words:</p>
+      <ul class="examples">
+        <li>Read the twelve PDFs in this folder and give me a one-page summary of each.</li>
+        <li>Turn these lab exports into one clean spreadsheet with a chart.</li>
+        <li>Draft a referral letter template I can reuse, in my tone.</li>
+        <li>Build a simple website for the clinic: hours, location, a contact form.</li>
+        <li>Rename and sort these 400 photos by date into folders.</li>
+        <li>Every Monday I copy numbers from one file to another. Do it for me.</li>
+      </ul>
+      <p style="margin-top:14px"><b>Two words you'll see.</b> <b>Terminal</b> is a plain text window where you can type instructions to your computer. You won't need it beyond pasting one line when Claude asks. <b>Prompt</b> just means a message you send to Claude.</p>
+      <div class="callout">
+        <p><b>One rule before anything else.</b> Claude Pro and Max are not set up for patient records (there's no HIPAA agreement on those plans). Keep names, dates of birth and anything identifying out of the files and chats, or de-identify first. Everything else is fair game.</p>
+      </div>
+    </section>
+
+    <section id="s1">
+      <div class="step">STEP 1 <em>Have these ready · 5 min</em></div>
+      <h2>Three things to have ready</h2>
+      <ul>
+        <li><b>A Claude account on the Pro or Max plan.</b> Claude Code is included in both. Pro is the entry plan; Max is for people using it for hours a day. Sign up or upgrade at <a href="https://claude.com/pricing">claude.com/pricing</a>.</li>
+        <li><b>A PC running Windows 10 or 11.</b> To check: open <i>Settings</i> from the Start menu, then <i>System</i>, then <i>About</i>.</li>
+        <li><b>Permission to install programs on it.</b> On your own PC you have it. On a hospital- or practice-managed laptop, installs are often blocked; if so, ask your IT person to install the Claude app for you, or use a personal PC.</li>
+      </ul>
+      <p class="cap">Along the way Windows will ask a few times, <i>Do you want to allow this app to make changes to your device?</i> That's normal. Click <b>Yes</b>.</p>
+    </section>
+
+    <section id="s2">
+      <div class="step">STEP 2 <em>Install the app · 3 min</em></div>
+      <h2>Install the Claude app</h2>
+      <ol>
+        <li>Go to <a href="https://claude.com/download">claude.com/download</a> and choose the Windows version.</li>
+        <li>Open the downloaded installer and let it run. If Windows asks whether to allow changes, click <b>Yes</b>.</li>
+        <li>Open Claude and sign in with your account.</li>
+        <li>At the top of the window, click the <b>Code</b> tab. That's Claude Code.</li>
+      </ol>
+      <p class="cap">There's also a version that runs in a plain text window (PowerShell). You don't need it today; Part 2 installs it quietly for later.</p>
+    </section>
+
+    <section id="s3">
+      <div class="step">STEP 3 <em>Pick a folder · 1 min</em></div>
+      <h2>Pick a folder to work in</h2>
+      <p>Claude Code works inside one folder at a time. It can see and change what's in that folder and nothing outside it.</p>
+      <ol>
+        <li>Open <b>File Explorer</b> (the yellow folder icon in the taskbar), go to <b>Documents</b>, and make a new folder called <b>Claude</b>. If your Documents folder lives in OneDrive, that's fine.</li>
+        <li>Back in the Code tab, when it asks which folder to open, choose that one.</li>
+        <li>If it asks whether you trust the folder: yes. It's yours.</li>
+      </ol>
+    </section>
+
+    <section id="s4">
+      <div class="step">STEP 4 <em>Look around · 2 min</em></div>
+      <h2>What you're looking at</h2>
+      <ul>
+        <li><b>The chat box</b> at the bottom. You type here; Enter sends.</li>
+        <li><b>The mode setting</b> next to the send button (or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>). <b>Auto</b> means Claude does the work and tells you what it did, with built-in safety checks. <b>Manual</b> means it asks before each action. Leave it on Auto.</li>
+        <li><b>The side panels.</b> One shows files Claude changes; one is a Terminal, which <kbd>Ctrl</kbd>+<kbd>`</kbd> shows or hides. You'll only use the Terminal when Claude hands you a line to paste.</li>
+      </ul>
+      <p class="cap">When Claude does ask permission, it looks like this. <b>1</b> means yes. <b>2</b> means yes, and stop asking for this kind of thing. <b>3</b> means no, and you tell it what to do instead.</p>
+      <div class="dialog">
+        <div class="t">Command</div>
+        <div class="c">winget install JohnMacFarlane.Pandoc</div>
+        <div class="d">Install pandoc so I can convert Word documents to other formats</div>
+        <div class="q">Do you want to proceed?</div>
+        <div class="o sel">❯ 1. Yes</div>
+        <div class="o">&nbsp;&nbsp;2. Yes, and don't ask again for winget install commands in this project</div>
+        <div class="o">&nbsp;&nbsp;3. No, and tell Claude what to do differently (esc)</div>
+      </div>
+      <h3>Say hello (optional)</h3>
+      <p>Type this into the chat box and press Enter:</p>
+      <ul class="say"><li>Hi. I'm a doctor and completely new to this. In three sentences, what can you do for me?</li></ul>
+      <p style="margin-top:12px">Read the answer. That's the whole interface: you talk, it works.</p>
+    </section>
+
+    <section id="s5">
+      <div class="step">STEP 5 <em>Done</em></div>
+      <h2>That's Part 1</h2>
+      <div class="stop">
+        <h3>Stop here</h3>
+        <p>When the Code tab is open on your Claude folder, you're set up. Part 2 is one message you paste into that chat. It installs what you need, sets Claude up for you, and teaches you the basics. You'll get it separately.</p>
+      </div>
+    </section>
+
+    <footer>Checked against the official Claude Code documentation on 19 Sep 2026. This page never asks you to type anything you don't understand. If Claude ever does, ask it what the thing means first.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  function fallbackCopy(t){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.getAttribute('data-copy'));if(!el)return;
+      var text=el.innerText.replace(/ /g,' ');
+      var done=function(){var old=btn.textContent;btn.textContent='Copied';btn.classList.add('done');setTimeout(function(){btn.textContent=old;btn.classList.remove('done');},1600);};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,function(){fallbackCopy(text);done();});}
+      else{fallbackCopy(text);done();}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

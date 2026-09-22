@@ -17,6 +17,8 @@ Send Part 1 first. Send Part 2 once they have the Code tab open on their folder.
 | `bootstrap-prompt.txt` | Just the message from Part 2 |
 | `build.py` | Regenerates both pages from `bootstrap-prompt.txt`: `python3 build.py` |
 | `artifact/` | Bare copies of the pages for republishing as claude.ai Artifacts |
+
+The figures are hand-drawn inline SVG inside `build.py`, not screenshots. They depict Windows, adapt to light and dark, and never go stale when a vendor page is redesigned. Orange is always annotation; everything else is drawn to match what the user actually sees.
 | `editions/` | Earlier versions: a Mac edition and a technical edition for developers |
 
 Facts (install commands, plan names, shortcuts, the HIPAA note) were checked against the official Claude Code docs on 19 Sep 2026.

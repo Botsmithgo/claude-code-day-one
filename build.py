@@ -265,19 +265,18 @@ FIG_APP = r'''<figure class="fig">
 <rect class="w-panel" x="232" y="170" width="380" height="34" rx="8"/>
 <text class="w-mute t-sm" x="246" y="191">Referral letter draft</text>
 <text class="w-mute t-sm" x="560" y="191">2h ago</text>
-<rect class="w-panel" x="232" y="288" width="86" height="21" rx="10.5"/>
-<text class="w-mute t-sm" x="275" y="303" text-anchor="middle">Your folder</text>
-<rect class="w-panel" x="232" y="316" width="380" height="34" rx="10"/>
-<text class="w-mute t-sm" x="246" y="337">Describe a task or ask a question</text>
-<circle class="w-clay" cx="592" cy="333" r="12"/>
-<path d="M592 327v12M587 332l5-5 5 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text class="w-mute" x="238" y="362" style="font-size:11px">+</text>
-<text class="w-ink t-sm t-b" x="256" y="362">Auto</text>
-<text class="w-mute" x="288" y="362" style="font-size:9px">▾</text>
-<text class="w-mute t-sm" x="612" y="362" text-anchor="end">Sonnet 5</text>
+<rect class="w-panel" x="232" y="270" width="86" height="21" rx="10.5"/>
+<text class="w-mute t-sm" x="275" y="285" text-anchor="middle">Your folder</text>
+<rect class="w-panel" x="232" y="298" width="380" height="34" rx="10"/>
+<text class="w-mute t-sm" x="246" y="319">Describe a task or ask a question</text>
+<circle class="w-clay" cx="592" cy="315" r="12"/>
+<path d="M592 309v12M587 314l5-5 5 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="w-ink t-sm t-b" x="258" y="348">Auto</text>
+<text class="w-mute" x="290" y="348" style="font-size:9px">▾</text>
+<text class="w-mute t-sm" x="612" y="348" text-anchor="end">Sonnet 5</text>
 <circle class="pin" cx="226" cy="58" r="11"/><text class="pin-t" x="226" y="62" text-anchor="middle">1</text>
-<circle class="pin" cx="232" cy="316" r="11"/><text class="pin-t" x="232" y="320" text-anchor="middle">2</text>
-<circle class="pin" cx="266" cy="372" r="11"/><text class="pin-t" x="266" y="376" text-anchor="middle">3</text>
+<circle class="pin" cx="232" cy="298" r="11"/><text class="pin-t" x="232" y="302" text-anchor="middle">2</text>
+<circle class="pin" cx="240" cy="348" r="11"/><text class="pin-t" x="240" y="352" text-anchor="middle">3</text>
 <circle class="pin" cx="36" cy="118" r="11"/><text class="pin-t" x="36" y="122" text-anchor="middle">4</text>
 </svg>
 <figcaption>The Code tab with a folder open. Drawn from the real thing; yours will be emptier to start.</figcaption>

@@ -145,28 +145,36 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 .fig .t-sm{font-size:11.5px}
 .fig .t-lg{font-size:18px;font-weight:700}
 .fig .t-b{font-weight:600}
-.fig .w-bg{fill:#FFFFFF;stroke:#D7DAE0;stroke-width:1.5}
+.fig .w-bg{fill:#FCFCFB;stroke:#E2DFD9;stroke-width:1.5}
+.fig .w-side{fill:#F5F4F1}
+.fig .w-dark{fill:#151515}
+.fig .w-dark-t{fill:#F0EFEC}
+.fig .w-dark-mute{fill:#9A968E}
+.fig .w-pillL{fill:#F0EFEC}
+.fig .w-clay{fill:#D97757}
+.fig .w-hair{stroke:#E8E5DF;stroke-width:1;fill:none}
+.fig .w-serif{font-family:Georgia,"Times New Roman",serif;font-weight:600}
 .fig .w-card{fill:#F6F7F9;stroke:#D7DAE0;stroke-width:1.5}
-.fig .w-chrome{fill:#F1F3F5}
+.fig .w-chrome{fill:#F0EEE9}
 .fig .w-dim{fill:#9AA3AE;opacity:.32}
 .fig .w-pill{fill:#FFFFFF;stroke:#D7DAE0;stroke-width:1}
-.fig .w-panel{fill:#FAFBFC;stroke:#E2E5EA;stroke-width:1}
-.fig .w-ghost{fill:#EDEFF2}
-.fig .w-dot{fill:#C9CFD8}
-.fig .w-ink{fill:#1B1E23}
-.fig .w-mute{fill:#6B7280}
+.fig .w-panel{fill:#FFFFFF;stroke:#E2DFD9;stroke-width:1}
+.fig .w-ghost{fill:#F0EEE9}
+.fig .w-dot{fill:#CFCBC3}
+.fig .w-ink{fill:#0B0B0B}
+.fig .w-mute{fill:#6E6B66}
 .fig .w-blue{fill:#0F6CBD}
 .fig .w-blue-t{fill:#FFFFFF}
 .fig .w-btn{fill:#C4603E}
 .fig .w-btn-t{fill:#FFFFFF;font-weight:600}
 .fig .w-btn2{fill:#FFFFFF;stroke:#C9CFD8;stroke-width:1}
 .fig .w-btnb{fill:#0F6CBD}
-.fig .w-stroke{stroke:#D7DAE0;stroke-width:1.5;fill:none}
+.fig .w-stroke{stroke:#CFCBC3;stroke-width:1.5;fill:none}
 .fig .w-lead{stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round}
 .fig .lbl{fill:var(--accent);font-weight:700;font-size:13px}
 .fig .pin{fill:var(--accent);stroke:var(--surface);stroke-width:2}
 .fig .pin-t{fill:var(--accent-ink);font-size:11.5px;font-weight:700}
-.fig .w-mono{font-family:var(--mono);font-size:10.5px;fill:#6B7280}
+.fig .w-mono{font-family:var(--mono);font-size:10.5px;fill:#6E6B66}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fig svg{filter:brightness(.94)}}
 :root[data-theme="dark"] .fig svg{filter:brightness(.94)}
 .legend{list-style:none;padding:0;margin:14px 0 4px;display:grid;gap:9px}
@@ -279,17 +287,19 @@ Based on what I said in Step 1, suggest one real ten-minute task we can do right
       </div>
       <div class="prompt-foot"><span>Scroll inside the box to read it all.</span></div>
       <figure class="fig">
-<svg viewBox="0 0 660 176" role="img" aria-labelledby="figpaste"><title id="figpaste">The chat box with the setup message pasted in, and the Enter key marked</title>
-<rect class="w-panel" x="20" y="16" width="620" height="84" rx="10"/>
-<text class="w-ink t-sm" x="38" y="44">I'm a doctor, not a technical person. I've never used a command</text>
-<text class="w-ink t-sm" x="38" y="64">line and I don't know programming. Treat me as a smart person</text>
-<text class="w-mute t-sm" x="38" y="84">who is completely new to these tools…</text>
-<circle class="w-btn" cx="600" cy="58" r="16"/>
-<path d="M600 50v16M593 57l7-7 7 7" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path class="w-lead" d="M600 78v34h-96"/>
-<rect class="w-card" x="410" y="98" width="88" height="30" rx="5"/>
-<text class="w-ink t-sm" x="454" y="118" text-anchor="middle">Enter</text>
-<text class="lbl" x="240" y="150" text-anchor="middle">Paste it all as one message, then press Enter</text>
+<svg viewBox="0 0 660 190" role="img" aria-labelledby="figpaste"><title id="figpaste">The chat box with the setup message pasted in, and the Enter key marked</title>
+<rect class="w-panel" x="20" y="14" width="620" height="96" rx="12"/>
+<text class="w-ink t-sm" x="38" y="42">I'm a doctor, not a technical person. I've never used a command</text>
+<text class="w-ink t-sm" x="38" y="62">line and I don't know programming. Treat me as a smart person</text>
+<text class="w-mute t-sm" x="38" y="82">who is completely new to these tools…</text>
+<circle class="w-clay" cx="602" cy="62" r="14"/>
+<path d="M602 55v14M596 61l6-6 6 6" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="w-mute" x="30" y="102" style="font-size:11px">+</text>
+<text class="w-ink t-sm t-b" x="48" y="102">Auto</text>
+<path class="w-lead" d="M602 82v30h-92"/>
+<rect class="w-card" x="418" y="98" width="88" height="30" rx="5"/>
+<text class="w-ink t-sm" x="462" y="118" text-anchor="middle">Enter</text>
+<text class="lbl" x="230" y="158" text-anchor="middle">Paste it all as one message, then press Enter</text>
 </svg>
 <figcaption>The whole block goes in at once. Do not split it up.</figcaption>
 </figure>

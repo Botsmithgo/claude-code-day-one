@@ -157,28 +157,36 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 .fig .t-sm{font-size:11.5px}
 .fig .t-lg{font-size:18px;font-weight:700}
 .fig .t-b{font-weight:600}
-.fig .w-bg{fill:#FFFFFF;stroke:#D7DAE0;stroke-width:1.5}
+.fig .w-bg{fill:#FCFCFB;stroke:#E2DFD9;stroke-width:1.5}
+.fig .w-side{fill:#F5F4F1}
+.fig .w-dark{fill:#151515}
+.fig .w-dark-t{fill:#F0EFEC}
+.fig .w-dark-mute{fill:#9A968E}
+.fig .w-pillL{fill:#F0EFEC}
+.fig .w-clay{fill:#D97757}
+.fig .w-hair{stroke:#E8E5DF;stroke-width:1;fill:none}
+.fig .w-serif{font-family:Georgia,"Times New Roman",serif;font-weight:600}
 .fig .w-card{fill:#F6F7F9;stroke:#D7DAE0;stroke-width:1.5}
-.fig .w-chrome{fill:#F1F3F5}
+.fig .w-chrome{fill:#F0EEE9}
 .fig .w-dim{fill:#9AA3AE;opacity:.32}
 .fig .w-pill{fill:#FFFFFF;stroke:#D7DAE0;stroke-width:1}
-.fig .w-panel{fill:#FAFBFC;stroke:#E2E5EA;stroke-width:1}
-.fig .w-ghost{fill:#EDEFF2}
-.fig .w-dot{fill:#C9CFD8}
-.fig .w-ink{fill:#1B1E23}
-.fig .w-mute{fill:#6B7280}
+.fig .w-panel{fill:#FFFFFF;stroke:#E2DFD9;stroke-width:1}
+.fig .w-ghost{fill:#F0EEE9}
+.fig .w-dot{fill:#CFCBC3}
+.fig .w-ink{fill:#0B0B0B}
+.fig .w-mute{fill:#6E6B66}
 .fig .w-blue{fill:#0F6CBD}
 .fig .w-blue-t{fill:#FFFFFF}
 .fig .w-btn{fill:#C4603E}
 .fig .w-btn-t{fill:#FFFFFF;font-weight:600}
 .fig .w-btn2{fill:#FFFFFF;stroke:#C9CFD8;stroke-width:1}
 .fig .w-btnb{fill:#0F6CBD}
-.fig .w-stroke{stroke:#D7DAE0;stroke-width:1.5;fill:none}
+.fig .w-stroke{stroke:#CFCBC3;stroke-width:1.5;fill:none}
 .fig .w-lead{stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round}
 .fig .lbl{fill:var(--accent);font-weight:700;font-size:13px}
 .fig .pin{fill:var(--accent);stroke:var(--surface);stroke-width:2}
 .fig .pin-t{fill:var(--accent-ink);font-size:11.5px;font-weight:700}
-.fig .w-mono{font-family:var(--mono);font-size:10.5px;fill:#6B7280}
+.fig .w-mono{font-family:var(--mono);font-size:10.5px;fill:#6E6B66}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fig svg{filter:brightness(.94)}}
 :root[data-theme="dark"] .fig svg{filter:brightness(.94)}
 .legend{list-style:none;padding:0;margin:14px 0 4px;display:grid;gap:9px}
@@ -191,20 +199,22 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 """
 
 FIG_DOWNLOAD = r'''<figure class="fig">
-<svg viewBox="0 0 560 250" role="img" aria-labelledby="figdl"><title id="figdl">The Claude download page, with a large button in the middle that reads Download for Windows</title>
+<svg viewBox="0 0 560 250" role="img" aria-labelledby="figdl"><title id="figdl">The Claude download page, a dark page with a button reading Download for Windows</title>
 <rect class="w-bg" x="10" y="10" width="540" height="230" rx="10"/>
 <path class="w-chrome" d="M10 20a10 10 0 0 1 10-10h520a10 10 0 0 1 10 10v22H10z"/>
 <circle class="w-dot" cx="27" cy="26" r="4"/><circle class="w-dot" cx="41" cy="26" r="4"/><circle class="w-dot" cx="55" cy="26" r="4"/>
-<rect class="w-pill" x="74" y="17" width="212" height="18" rx="9"/>
+<rect class="w-panel" x="74" y="17" width="212" height="18" rx="9"/>
 <text class="w-mute t-sm" x="84" y="30">claude.com/download</text>
-<text class="w-ink t-lg" x="280" y="104" text-anchor="middle">Download Claude</text>
-<text class="w-mute t-sm" x="280" y="126" text-anchor="middle">Think, hand off tasks, and code, all in one place.</text>
-<rect class="w-btn" x="180" y="148" width="200" height="40" rx="8"/>
-<text class="w-btn-t" x="280" y="173" text-anchor="middle">Download for Windows</text>
-<path class="w-ink" d="M392 176v20l5-5 4 8 4-2-4-7h7z"/>
-<text class="w-mute t-sm" x="280" y="216" text-anchor="middle">Further down the page there is also a list: macOS, Windows, Linux.</text>
+<path class="w-dark" d="M10 42h540v188a10 10 0 0 1-10 10H20a10 10 0 0 1-10-10z"/>
+<path class="w-clay" d="M44.0,66.0 L42.7,62.7 L44.0,55.0 L45.3,62.7 Z M44.0,66.0 L44.7,62.5 L49.9,56.7 L46.8,63.9 Z M44.0,66.0 L46.5,63.5 L54.0,61.4 L47.5,65.8 Z M44.0,66.0 L47.4,65.2 L54.9,67.6 L47.1,67.7 Z M44.0,66.0 L47.3,67.2 L52.3,73.2 L45.7,69.1 Z M44.0,66.0 L46.1,68.8 L47.1,76.6 L43.7,69.5 Z M44.0,66.0 L44.3,69.5 L40.9,76.6 L41.9,68.8 Z M44.0,66.0 L42.3,69.1 L35.7,73.2 L40.7,67.2 Z M44.0,66.0 L40.9,67.7 L33.1,67.6 L40.6,65.2 Z M44.0,66.0 L40.5,65.8 L34.0,61.4 L41.5,63.5 Z M44.0,66.0 L41.2,63.9 L38.1,56.7 L43.3,62.5 Z"/>
+<text class="w-dark-t w-serif" x="62" y="71" style="font-size:15px">Claude</text>
+<text class="w-dark-t w-serif" x="280" y="118" text-anchor="middle" style="font-size:26px">Download Claude</text>
+<text class="w-dark-mute t-sm" x="280" y="142" text-anchor="middle">Think, hand off tasks, and code, all in one place.</text>
+<rect class="w-pillL" x="196" y="162" width="168" height="36" rx="18"/>
+<text class="w-ink t-b" x="280" y="185" text-anchor="middle" style="font-size:13px">Download for Windows</text>
+<path class="w-dark-t" d="M376 174v20l5-5 4 8 4-2-4-7h7z"/>
 </svg>
-<figcaption>On your PC this button names Windows. One click is all you need.</figcaption>
+<figcaption>The page is dark. On a Windows PC this button names Windows.</figcaption>
 </figure>'''
 FIG_UAC = r'''<figure class="fig">
 <svg viewBox="0 0 480 252" role="img" aria-labelledby="figuac"><title id="figuac">A Windows dialog asking whether to allow the app to make changes, with Yes and No buttons</title>
@@ -227,63 +237,71 @@ FIG_UAC = r'''<figure class="fig">
 <figcaption>Windows asks this before an app installs anything. It is normal and you will see it a few times.</figcaption>
 </figure>'''
 FIG_APP = r'''<figure class="fig">
-<svg viewBox="0 0 660 400" role="img" aria-labelledby="figapp"><title id="figapp">The Claude app window, with the Code tab, the chat box, the mode setting and the side panel marked one to four</title>
+<svg viewBox="0 0 660 400" role="img" aria-labelledby="figapp"><title id="figapp">The Claude app on the Code tab: a sidebar with New and past jobs, and the chat box along the bottom with the Auto setting</title>
 <rect class="w-bg" x="24" y="10" width="612" height="356" rx="10"/>
-<path class="w-chrome" d="M24 20a10 10 0 0 1 10-10h592a10 10 0 0 1 10 10v22H24z"/>
-<path class="w-stroke" d="M568 26h12M594 20h12v12h-12zM620 20l12 12M632 20l-12 12"/>
-<text class="w-mute t-sm" x="40" y="30">Claude</text>
-<text class="w-mute" x="46" y="63">Chat</text>
-<text class="w-mute" x="100" y="63">Cowork</text>
-<text class="w-ink t-b" x="172" y="63">Code</text>
-<rect class="w-btn" x="170" y="70" width="42" height="3" rx="1.5"/>
-<path class="w-stroke" d="M24 74h612"/>
-<rect class="w-ghost" x="250" y="90" width="172" height="26" rx="9"/>
-<text class="w-mute t-sm" x="264" y="107">Summarise these three PDFs</text>
-<text class="w-ink t-sm" x="38" y="142">I read all three. Here is a one-page</text>
-<text class="w-ink t-sm" x="38" y="160">summary of each, in plain English.</text>
-<rect class="w-panel" x="38" y="176" width="240" height="46" rx="7"/>
-<text class="w-mono" x="50" y="196">summary-2026.md</text>
-<text class="w-mono" x="50" y="212">3 files read</text>
-<rect class="w-panel" x="436" y="88" width="186" height="212" rx="8"/>
-<text class="w-ink t-sm t-b" x="450" y="108">Files</text>
-<text class="w-mono" x="450" y="130">referral-letter.docx</text>
-<text class="w-mono" x="450" y="148">lab-results.xlsx</text>
-<text class="w-mono" x="450" y="166">summary-2026.md</text>
-<path class="w-stroke" d="M436 182h186"/>
-<text class="w-ink t-sm t-b" x="450" y="202">Terminal</text>
-<text class="w-mono" x="450" y="224">winget install Git.Git</text>
-<text class="w-mono" x="450" y="240">Successfully installed</text>
-<rect class="w-panel" x="38" y="310" width="584" height="42" rx="10"/>
-<text class="w-mute t-sm" x="54" y="336">Ask Claude to do something…</text>
-<rect class="w-ghost" x="466" y="320" width="66" height="23" rx="11.5"/>
-<text class="w-ink t-sm" x="499" y="336" text-anchor="middle">Auto</text>
-<circle class="w-btn" cx="592" cy="331" r="15"/>
-<path d="M592 324v14M586 330l6-6 6 6" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle class="pin" cx="226" cy="57" r="11"/><text class="pin-t" x="226" y="61" text-anchor="middle">1</text>
-<circle class="pin" cx="38" cy="331" r="11"/><text class="pin-t" x="38" y="335" text-anchor="middle">2</text>
-<circle class="pin" cx="466" cy="316" r="11"/><text class="pin-t" x="466" y="320" text-anchor="middle">3</text>
-<circle class="pin" cx="630" cy="190" r="11"/><text class="pin-t" x="630" y="194" text-anchor="middle">4</text>
+<path class="w-chrome" d="M24 20a10 10 0 0 1 10-10h592a10 10 0 0 1 10 10v24H24z"/>
+<path class="w-stroke" d="M568 27h12M594 21h12v12h-12zM620 21l12 12M632 21l-12 12"/>
+<text class="w-mute t-sm" x="272" y="31">Claude</text>
+<text class="w-mute" x="44" y="64">Chat</text>
+<text class="w-mute" x="98" y="64">Cowork</text>
+<text class="w-ink t-b" x="170" y="64">Code</text>
+<rect class="w-clay" x="168" y="71" width="42" height="3" rx="1.5"/>
+<path class="w-hair" d="M24 76h612"/>
+<path class="w-side" d="M24 76h176v280a10 10 0 0 1-10 10H34a10 10 0 0 1-10-10z"/>
+<path class="w-hair" d="M200 76v290"/>
+<path class="w-clay" d="M44.0,99.0 L43.1,96.6 L44.0,91.0 L44.9,96.6 Z M44.0,99.0 L44.5,96.5 L48.3,92.3 L46.1,97.5 Z M44.0,99.0 L45.8,97.2 L51.3,95.7 L46.6,98.8 Z M44.0,99.0 L46.5,98.4 L51.9,100.1 L46.2,100.3 Z M44.0,99.0 L46.4,99.9 L50.0,104.2 L45.2,101.3 Z M44.0,99.0 L45.6,101.0 L46.3,106.7 L43.8,101.6 Z M44.0,99.0 L44.2,101.6 L41.7,106.7 L42.4,101.0 Z M44.0,99.0 L42.8,101.3 L38.0,104.2 L41.6,99.9 Z M44.0,99.0 L41.8,100.3 L36.1,100.1 L41.5,98.4 Z M44.0,99.0 L41.4,98.8 L36.7,95.7 L42.2,97.2 Z M44.0,99.0 L41.9,97.5 L39.7,92.3 L43.5,96.5 Z"/>
+<text class="w-ink w-serif" x="58" y="103" style="font-size:13px">Claude Code</text>
+<rect class="w-panel" x="36" y="118" width="152" height="24" rx="6"/>
+<text class="w-ink t-sm t-b" x="48" y="134">+  New</text>
+<text class="w-mute t-sm" x="48" y="160">Artifacts</text>
+<text class="w-mute t-sm" x="48" y="180">Customize</text>
+<text class="w-mute t-sm" x="36" y="208" style="font-size:10px">TODAY</text>
+<text class="w-ink t-sm" x="48" y="228">Referral letter draft</text>
+<text class="w-mute t-sm" x="48" y="248">Lab results cleanup</text>
+<text class="w-mute t-sm" x="48" y="268">Clinic website</text>
+<path class="w-clay" d="M232.0,116.0 L231.0,113.3 L232.0,107.0 L233.0,113.3 Z M232.0,116.0 L232.6,113.2 L236.9,108.4 L234.3,114.3 Z M232.0,116.0 L234.0,113.9 L240.2,112.3 L234.9,115.8 Z M232.0,116.0 L234.8,115.4 L240.9,117.3 L234.5,117.4 Z M232.0,116.0 L234.7,117.0 L238.8,121.9 L233.4,118.6 Z M232.0,116.0 L233.8,118.3 L234.5,124.6 L231.8,118.9 Z M232.0,116.0 L232.2,118.9 L229.5,124.6 L230.2,118.3 Z M232.0,116.0 L230.6,118.6 L225.2,121.9 L229.3,117.0 Z M232.0,116.0 L229.5,117.4 L223.1,117.3 L229.2,115.4 Z M232.0,116.0 L229.1,115.8 L223.8,112.3 L230.0,113.9 Z M232.0,116.0 L229.7,114.3 L227.1,108.4 L231.4,113.2 Z"/>
+<text class="w-ink" x="248" y="121" style="font-size:15px">Welcome back</text>
+<text class="w-mute t-sm" x="232" y="152">Pick up where you left off, or start something new.</text>
+<rect class="w-panel" x="232" y="170" width="380" height="34" rx="8"/>
+<text class="w-mute t-sm" x="246" y="191">Referral letter draft</text>
+<text class="w-mute t-sm" x="560" y="191">2h ago</text>
+<rect class="w-panel" x="232" y="288" width="86" height="21" rx="10.5"/>
+<text class="w-mute t-sm" x="275" y="303" text-anchor="middle">Your folder</text>
+<rect class="w-panel" x="232" y="316" width="380" height="34" rx="10"/>
+<text class="w-mute t-sm" x="246" y="337">Describe a task or ask a question</text>
+<circle class="w-clay" cx="592" cy="333" r="12"/>
+<path d="M592 327v12M587 332l5-5 5 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="w-mute" x="238" y="362" style="font-size:11px">+</text>
+<text class="w-ink t-sm t-b" x="256" y="362">Auto</text>
+<text class="w-mute" x="288" y="362" style="font-size:9px">▾</text>
+<text class="w-mute t-sm" x="612" y="362" text-anchor="end">Sonnet 5</text>
+<circle class="pin" cx="226" cy="58" r="11"/><text class="pin-t" x="226" y="62" text-anchor="middle">1</text>
+<circle class="pin" cx="232" cy="316" r="11"/><text class="pin-t" x="232" y="320" text-anchor="middle">2</text>
+<circle class="pin" cx="266" cy="372" r="11"/><text class="pin-t" x="266" y="376" text-anchor="middle">3</text>
+<circle class="pin" cx="36" cy="118" r="11"/><text class="pin-t" x="36" y="122" text-anchor="middle">4</text>
 </svg>
-<figcaption>What the Code tab looks like once a folder is open. Yours will be emptier to start.</figcaption>
+<figcaption>The Code tab with a folder open. Drawn from the real thing; yours will be emptier to start.</figcaption>
 </figure>
 <ul class="legend">
   <li><b>1</b><span>The <b>Code</b> tab, along the top. That is Claude Code.</span></li>
   <li><b>2</b><span>The <b>chat box</b>. You type here; Enter sends.</span></li>
   <li><b>3</b><span>The <b>mode setting</b>. Leave it on Auto.</span></li>
-  <li><b>4</b><span>The <b>side panel</b>: files Claude changed, and a Terminal. <kbd>Ctrl</kbd>+<kbd>`</kbd> shows or hides it.</span></li>
+  <li><b>4</b><span><b>New</b> starts a fresh job. Past jobs are listed underneath.</span></li>
 </ul>'''
 FIG_PASTE = r'''<figure class="fig">
-<svg viewBox="0 0 660 176" role="img" aria-labelledby="figpaste"><title id="figpaste">The chat box with the setup message pasted in, and the Enter key marked</title>
-<rect class="w-panel" x="20" y="16" width="620" height="84" rx="10"/>
-<text class="w-ink t-sm" x="38" y="44">I'm a doctor, not a technical person. I've never used a command</text>
-<text class="w-ink t-sm" x="38" y="64">line and I don't know programming. Treat me as a smart person</text>
-<text class="w-mute t-sm" x="38" y="84">who is completely new to these tools…</text>
-<circle class="w-btn" cx="600" cy="58" r="16"/>
-<path d="M600 50v16M593 57l7-7 7 7" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path class="w-lead" d="M600 78v34h-96"/>
-<rect class="w-card" x="410" y="98" width="88" height="30" rx="5"/>
-<text class="w-ink t-sm" x="454" y="118" text-anchor="middle">Enter</text>
-<text class="lbl" x="240" y="150" text-anchor="middle">Paste it all as one message, then press Enter</text>
+<svg viewBox="0 0 660 190" role="img" aria-labelledby="figpaste"><title id="figpaste">The chat box with the setup message pasted in, and the Enter key marked</title>
+<rect class="w-panel" x="20" y="14" width="620" height="96" rx="12"/>
+<text class="w-ink t-sm" x="38" y="42">I'm a doctor, not a technical person. I've never used a command</text>
+<text class="w-ink t-sm" x="38" y="62">line and I don't know programming. Treat me as a smart person</text>
+<text class="w-mute t-sm" x="38" y="82">who is completely new to these tools…</text>
+<circle class="w-clay" cx="602" cy="62" r="14"/>
+<path d="M602 55v14M596 61l6-6 6 6" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="w-mute" x="30" y="102" style="font-size:11px">+</text>
+<text class="w-ink t-sm t-b" x="48" y="102">Auto</text>
+<path class="w-lead" d="M602 82v30h-92"/>
+<rect class="w-card" x="418" y="98" width="88" height="30" rx="5"/>
+<text class="w-ink t-sm" x="462" y="118" text-anchor="middle">Enter</text>
+<text class="lbl" x="230" y="158" text-anchor="middle">Paste it all as one message, then press Enter</text>
 </svg>
 <figcaption>The whole block goes in at once. Do not split it up.</figcaption>
 </figure>'''
@@ -405,7 +423,7 @@ PART1 = r"""
       <div class="step">STEP 4 <em>Look around · 2 min</em></div>
       <h2>What you're looking at</h2>
       FIG_APP
-      <p style="margin-top:16px">The <b>mode setting</b> at (3) is the only one worth knowing now. <b>Auto</b> means Claude does the work and tells you what it did, with built-in safety checks. <b>Manual</b> means it asks before each action. Leave it on Auto. To change it, click it or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>.</p>
+      <p style="margin-top:16px">The <b>mode setting</b> at (3) is the only one worth knowing now. <b>Auto</b> means Claude does the work and tells you what it did, with built-in safety checks. <b>Manual</b> means it asks before each action. Leave it on Auto. To change it, click it or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. There is also a panel for files Claude changed and a Terminal; <kbd>Ctrl</kbd>+<kbd>`</kbd> shows or hides it.</p>
       <p class="cap">When Claude does ask permission, it looks like this. <b>1</b> means yes. <b>2</b> means yes, and stop asking for this kind of thing. <b>3</b> means no, and you tell it what to do instead.</p>
       <div class="dialog">
         <div class="t">Command</div>

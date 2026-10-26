@@ -6,7 +6,7 @@
   artifact/part-2.html  -> same as part-2.html, bare form for claude.ai Artifacts
 Run: python3 build.py
 """
-import html
+import html, re
 
 PROMPT = open('bootstrap-prompt.txt', encoding='utf-8').read().rstrip('\n')
 PROMPT_LINES = PROMPT.count('\n') + 1
@@ -194,6 +194,11 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 .legend li{display:flex;gap:10px;align-items:flex-start;margin:0;max-width:none;font-size:14.5px;line-height:1.45}
 .legend>li>b{flex:none;width:21px;height:21px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:11.5px;display:grid;place-items:center;margin-top:2px;font-weight:700}
 .legend span b{color:var(--ink);font-weight:700}
+.parthead{margin-top:64px;padding-top:44px;border-top:3px solid var(--accent)}
+.parthead .step{font-size:13.5px}
+.parthead h2{font-size:30px;margin-bottom:6px}
+.parthead p{font-size:17.5px;color:var(--ink-2);max-width:62ch}
+.rail-head + .rail-head,.rail a + .rail-head{margin-top:20px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 """
@@ -346,7 +351,7 @@ PART1 = r"""
         <div><b>Account</b><span>~5 min</span><small>Claude Pro or Max</small></div>
         <div><b>Install the app</b><span>~3 min</span><small>Like any Windows program</small></div>
         <div><b>Open it</b><span>~2 min</span><small>Sign in, click Code</small></div>
-        <div><b>Pick a folder</b><span>~1 min</span><small>Where Claude will work</small></div>
+        <div><b>CELL4A</b><span>CELL4B</span><small>CELL4C</small></div>
       </div>
       <p class="route-note">Written for a PC running Windows 10 or 11.</p>
     </header>
@@ -443,8 +448,8 @@ PART1 = r"""
       <div class="step">STEP 5 <em>Done</em></div>
       <h2>That's Part 1</h2>
       <div class="stop">
-        <h3>Stop here</h3>
-        <p>When the Code tab is open on your Claude folder, you're set up. Part 2 is one message you paste into that chat. It installs what you need, sets Claude up for you, and teaches you the basics. You'll get it separately.</p>
+        <h3>STOPTITLE</h3>
+        <p>STOPBODY</p>
       </div>
     </section>
 
@@ -485,9 +490,9 @@ PART2 = r"""
       <div class="step">STEP 1 <em>Before you paste · 1 min</em></div>
       <h2>Three quick checks</h2>
       <ul class="check">
-        <li>The Claude app is open on the <b>Code</b> tab, in the <b>Claude</b> folder you made in Part 1.</li>
-        <li>The mode setting near the send button says <b>Auto</b>.</li>
-        <li>You have about 20 minutes. You'll be asked a few questions at the start and clicked <i>Yes</i> a few times; the rest is waiting.</li>
+        <li><span>The Claude app is open on the <b>Code</b> tab, in the <b>Claude</b> folder you made in Part 1.</span></li>
+        <li><span>The mode setting near the send button says <b>Auto</b>.</span></li>
+        <li><span>You have about 20 minutes. You answer a few questions at the start and click <i>Yes</i> a few times; the rest is waiting.</span></li>
       </ul>
     </section>
 
@@ -634,8 +639,72 @@ def standalone_page(title, desc, body):
 
 import os
 os.makedirs('artifact', exist_ok=True)
-open('index.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC1, PART1))
+COMBINED_RAIL = """<nav class="rail" aria-label="Sections">
+    <p class="rail-head">Part 1 · Get set up</p>
+    <a href="#s0"><b>·</b>What this is</a>
+    <a href="#s1"><b>1</b>Have these ready</a>
+    <a href="#s2"><b>2</b>Install the app</a>
+    <a href="#s3"><b>3</b>Pick a folder</a>
+    <a href="#s4"><b>4</b>Look around</a>
+    <p class="rail-head">Part 2 · The setup message</p>
+    <a href="#p2-s1"><b>5</b>Before you paste</a>
+    <a href="#p2-s2"><b>6</b>Paste the message</a>
+    <a href="#p2-s3"><b>7</b>What Claude set up</a>
+    <a href="#p2-s4"><b>8</b>Cheat sheet</a>
+    <a href="#p2-s5"><b>9</b>Getting good results</a>
+    <a href="#p2-s6"><b>10</b>When it breaks</a>
+    <div class="rail-copy"><button class="copy" data-copy="prompt-text" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">Copy the message</button></div>
+  </nav>"""
+
+HANDOFF = """
+    <section id="p2-start" class="parthead">
+      <div class="step">PART 2 <em>The setup message · 20 min, mostly waiting</em></div>
+      <h2>Now let Claude set itself up</h2>
+      <p>Everything above was installing. From here you paste one message, and Claude does the rest: it asks you four questions, installs what you need, configures itself for you, and finishes with a short lesson and a first task.</p>
+    </section>
+"""
+
+def inner_main(body):
+    m = re.search(r"<main>(.*)</main>", body, re.S)
+    assert m, "no <main> found"
+    return m.group(1)
+
+def combined_body():
+    m1 = inner_main(PART1)
+    m2 = inner_main(PART2)
+    # one footer, at the very end
+    m1 = m1.replace("FOOTER", "", 1)
+    # part 1 ends by pointing down the page instead of at a second link
+    m1 = m1.replace("STOPTITLE", "Take a breath")
+    m1 = m1.replace("STOPBODY", "When the Code tab is open on your Claude folder, you are set up. "
+                                "That was the fiddly half. Part 2 is right below: one message you paste "
+                                "into that chat, and Claude handles the rest.")
+    # part 2's section ids would collide with part 1's
+    m2 = re.sub(r'id="s(\d+)"', r'id="p2-s\1"', m2)
+    # the Windows dialog is already shown in part 1; don't repeat it
+    m2 = m2.replace("\n      FIG_UAC", "")
+    # part 2's own hero//intro is replaced by the handoff block
+    m2 = re.sub(r"\s*<header>.*?</header>", "", m2, count=1, flags=re.S)
+    return '<div class="page">\n  ' + COMBINED_RAIL + "\n  <main>" + m1 + HANDOFF + m2 + "</main>\n</div>"
+
+# standalone part 1 (still sent on its own) keeps its original sign-off
+SOLO1 = (PART1.replace("STOPTITLE", "Stop here")
+              .replace("STOPBODY", "When the Code tab is open on your Claude folder, you are set up. "
+                                   "Part 2 is one message you paste into that chat. It installs what you "
+                                   "need, sets Claude up for you, and teaches you the basics.")
+              .replace("<div><b>CELL4A</b><span>CELL4B</span><small>CELL4C</small></div>",
+                       "<div><b>Pick a folder</b><span>~1 min</span><small>Where Claude will work</small></div>"))
+
+FULL = (combined_body()
+        .replace("CELL4A", "Paste one message").replace("CELL4B", "~20 min")
+        .replace("CELL4C", "Claude does the rest"))
+
+DESC_FULL = ("The whole thing in one page: what Claude Code is, how to install it on a Windows PC, "
+             "and the one message to paste that sets everything up.")
+
+open('index.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC_FULL, FULL))
+open('part-1-only.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC1, SOLO1))
 open('part-2.html', 'w', encoding='utf-8').write(standalone_page('Claude Code First Message', DESC2, PART2))
-open('artifact/part-1.html', 'w', encoding='utf-8').write(artifact_page('Claude Code Day One', PART1))
+open('artifact/part-1.html', 'w', encoding='utf-8').write(artifact_page('Claude Code Day One', FULL))
 open('artifact/part-2.html', 'w', encoding='utf-8').write(artifact_page('Claude Code First Message', PART2))
 print('built index.html, part-2.html (+ artifact/ copies);', PROMPT_LINES, 'prompt lines')

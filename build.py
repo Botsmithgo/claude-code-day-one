@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Builds the guide pages from bootstrap-prompt.txt.
-  index.html            -> Part 1 (get set up, Windows)      [GitHub Pages]
-  part-2.html           -> Part 2 (the setup message + ref)  [GitHub Pages]
+  index.html            -> Part 1 only; this is the link you share
+  part-1-only.html      -> same as index.html (kept so no sent link breaks)
+  part-2.html           -> Part 2 only (the setup message + reference)
+  full.html             -> both parts on one page, for when you want it
   artifact/part-1.html  -> same as index.html, bare form for claude.ai Artifacts
   artifact/part-2.html  -> same as part-2.html, bare form for claude.ai Artifacts
 Run: python3 build.py
@@ -702,9 +704,12 @@ FULL = (combined_body()
 DESC_FULL = ("The whole thing in one page: what Claude Code is, how to install it on a Windows PC, "
              "and the one message to paste that sets everything up.")
 
-open('index.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC_FULL, FULL))
+# index.html is the link that gets shared: Part 1 only, so it can go to a
+# newcomer without dumping the whole thing on them. Part 2 follows later.
+open('index.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC1, SOLO1))
 open('part-1-only.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC1, SOLO1))
 open('part-2.html', 'w', encoding='utf-8').write(standalone_page('Claude Code First Message', DESC2, PART2))
-open('artifact/part-1.html', 'w', encoding='utf-8').write(artifact_page('Claude Code Day One', FULL))
+open('full.html', 'w', encoding='utf-8').write(standalone_page('Claude Code Day One', DESC_FULL, FULL))
+open('artifact/part-1.html', 'w', encoding='utf-8').write(artifact_page('Claude Code Day One', SOLO1))
 open('artifact/part-2.html', 'w', encoding='utf-8').write(artifact_page('Claude Code First Message', PART2))
 print('built index.html, part-2.html (+ artifact/ copies);', PROMPT_LINES, 'prompt lines')

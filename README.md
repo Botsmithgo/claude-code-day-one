@@ -2,22 +2,22 @@
 
 **Landing cold?** This is a two-part, plain-English guide that takes a non-technical person (written for a doctor on a Windows PC) from nothing installed to a working Claude Code setup. Part 1 installs the app. Part 2 is one message they paste into Claude Code, which then installs and configures everything itself.
 
-**Send this one link:** https://botsmithgo.github.io/claude-code-day-one/
+**Send this first:** https://botsmithgo.github.io/claude-code-day-one/
 
-Both parts are on that page, one after the other, so there is nothing to send twice and nothing for them to lose.
+That is Part 1: what Claude Code is, and getting it installed. It stands on its own, so it can go to anyone starting out.
 
-If you would rather hand it over in two goes, the halves are still live on their own:
+**Send this second,** once they have the Code tab open on their folder: https://botsmithgo.github.io/claude-code-day-one/part-2.html
 
-- Part 1 only, get set up: https://botsmithgo.github.io/claude-code-day-one/part-1-only.html
-- Part 2 only, the setup message: https://botsmithgo.github.io/claude-code-day-one/part-2.html
+Both parts on a single page, if you ever want one link instead: https://botsmithgo.github.io/claude-code-day-one/full.html
 
 ## What's in here
 
 | File | What it is |
 |---|---|
-| `index.html` | The whole guide, both parts, one page. This is the link to share |
-| `part-1-only.html` | Part 1 on its own, for sending the halves separately |
-| `part-2.html` | Part 2 on its own (the message has a copy button) |
+| `index.html` | Part 1. The link you share first |
+| `part-2.html` | Part 2, the setup message (with a copy button) |
+| `full.html` | Both parts on one page, for when you want a single link |
+| `part-1-only.html` | Identical to `index.html`, kept so an already-sent link keeps working |
 | `PART-1-GET-SET-UP.md`, `PART-2-FIRST-MESSAGE.md` | The same content as plain markdown, for email or paste |
 | `bootstrap-prompt.txt` | Just the message from Part 2 |
 | `build.py` | Regenerates both pages from `bootstrap-prompt.txt`: `python3 build.py` |

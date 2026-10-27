@@ -57,7 +57,7 @@ main{max-width:720px;min-width:0}
 .route div{padding:14px 16px;border-right:1px solid var(--line)}
 .route div:last-child{border-right:0}
 .route b{display:block;font-size:14.5px;font-weight:700}
-.route span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+.route>div>span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
 .route small{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
 @media (max-width:640px){.route{grid-template-columns:1fr 1fr}.route div:nth-child(2){border-right:0}.route div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 .route-note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
@@ -187,6 +187,13 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 .parthead h2{font-size:30px;margin-bottom:6px}
 .parthead p{font-size:17.5px;color:var(--ink-2);max-width:62ch}
 .rail-head + .rail-head,.rail a + .rail-head{margin-top:20px}
+.osbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:22px 0 4px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.osbar p{margin:0;font-size:14.5px;font-weight:700;margin-right:2px}
+.osbtn{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line-strong);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .15s,color .15s}
+.osbtn:hover{border-color:var(--accent)}
+.osbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.osbar small{flex-basis:100%;font-size:13px;color:var(--muted);margin-top:2px}
+[data-platform="win"] .os-mac,[data-platform="mac"] .os-win{display:none}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -435,6 +442,21 @@ Based on what I said in Step 1, suggest one real ten-minute task we can do right
 <script>
 (function(){
   function fallbackCopy(t){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
+  var page=document.querySelector('.page');
+  if(page){
+    var picks=document.querySelectorAll('[data-os-pick]');
+    var setOS=function(os){
+      page.setAttribute('data-platform',os);
+      Array.prototype.forEach.call(picks,function(b){
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-os-pick')===os));
+      });
+      try{localStorage.setItem('ccd-os',os);}catch(e){}
+    };
+    Array.prototype.forEach.call(picks,function(b){
+      b.addEventListener('click',function(){setOS(b.getAttribute('data-os-pick'));});
+    });
+    setOS(page.getAttribute('data-platform')||'win');
+  }
   document.querySelectorAll('[data-copy]').forEach(function(btn){
     btn.addEventListener('click',function(){
       var el=document.getElementById(btn.getAttribute('data-copy'));if(!el)return;

@@ -71,7 +71,7 @@ main{max-width:720px;min-width:0}
 .route div{padding:14px 16px;border-right:1px solid var(--line)}
 .route div:last-child{border-right:0}
 .route b{display:block;font-size:14.5px;font-weight:700}
-.route span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+.route>div>span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
 .route small{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
 @media (max-width:640px){.route{grid-template-columns:1fr 1fr}.route div:nth-child(2){border-right:0}.route div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 .route-note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
@@ -201,6 +201,13 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 .parthead h2{font-size:30px;margin-bottom:6px}
 .parthead p{font-size:17.5px;color:var(--ink-2);max-width:62ch}
 .rail-head + .rail-head,.rail a + .rail-head{margin-top:20px}
+.osbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:22px 0 4px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.osbar p{margin:0;font-size:14.5px;font-weight:700;margin-right:2px}
+.osbtn{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line-strong);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .15s,color .15s}
+.osbtn:hover{border-color:var(--accent)}
+.osbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.osbar small{flex-basis:100%;font-size:13px;color:var(--muted);margin-top:2px}
+[data-platform="win"] .os-mac,[data-platform="mac"] .os-win{display:none}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 """
@@ -312,10 +319,60 @@ FIG_PASTE = r'''<figure class="fig">
 <figcaption>The whole block goes in at once. Do not split it up.</figcaption>
 </figure>'''
 
+_burst_dmg = '<path class="w-clay" d="M179.0,125.0 L176.2,117.8 L179.0,101.0 L181.8,117.8 Z M179.0,125.0 L180.6,117.5 L192.0,104.8 L185.2,120.4 Z M179.0,125.0 L184.4,119.5 L200.8,115.0 L186.7,124.5 Z M179.0,125.0 L186.5,123.3 L202.8,128.4 L185.7,128.8 Z M179.0,125.0 L186.2,127.6 L197.1,140.7 L182.6,131.8 Z M179.0,125.0 L183.7,131.1 L185.8,148.0 L178.4,132.7 Z M179.0,125.0 L179.6,132.7 L172.2,148.0 L174.3,131.1 Z M179.0,125.0 L175.4,131.8 L160.9,140.7 L171.8,127.6 Z M179.0,125.0 L172.3,128.8 L155.2,128.4 L171.5,123.3 Z M179.0,125.0 L171.3,124.5 L157.2,115.0 L173.6,119.5 Z M179.0,125.0 L172.8,120.4 L166.0,104.8 L177.4,117.5 Z"/>'
+
+FIG_DOWNLOAD_MAC = (FIG_DOWNLOAD
+    .replace("Download for Windows", "Download for macOS")
+    .replace('id="figdl"', 'id="figdlmac"').replace('aria-labelledby="figdl"', 'aria-labelledby="figdlmac"')
+    .replace("a button reading Download for Windows", "a button reading Download for macOS")
+    .replace("On a Windows PC this button names Windows.", "On a Mac this button names macOS."))
+
+_WIN_CONTROLS = '<path class="w-stroke" d="M568 27h12M594 21h12v12h-12zM620 21l12 12M632 21l-12 12"/>'
+_MAC_CONTROLS = ('<circle cx="44" cy="27" r="5.5" fill="#FF5F57"/>'
+                 '<circle cx="62" cy="27" r="5.5" fill="#FEBC2E"/>'
+                 '<circle cx="80" cy="27" r="5.5" fill="#28C840"/>')
+assert _WIN_CONTROLS in FIG_APP, "window controls not found in FIG_APP"
+FIG_APP_MAC = (FIG_APP
+    .replace(_WIN_CONTROLS, _MAC_CONTROLS)
+    .replace('id="figapp"', 'id="figappmac"').replace('aria-labelledby="figapp"', 'aria-labelledby="figappmac"'))
+
+FIG_DMG = r'''<figure class="fig">
+<svg viewBox="0 0 560 250" role="img" aria-labelledby="figdmg"><title id="figdmg">A window with the Claude icon on the left and the Applications folder on the right, and an arrow showing the drag between them</title>
+<rect class="w-bg" x="30" y="14" width="500" height="208" rx="10"/>
+<path class="w-chrome" d="M30 24a10 10 0 0 1 10-10h480a10 10 0 0 1 10 10v24H30z"/>
+<circle cx="52" cy="36" r="5.5" fill="#FF5F57"/><circle cx="70" cy="36" r="5.5" fill="#FEBC2E"/><circle cx="88" cy="36" r="5.5" fill="#28C840"/>
+<text class="w-ink t-sm t-b" x="280" y="40" text-anchor="middle">Claude</text>
+<rect class="w-dark" x="140" y="86" width="78" height="78" rx="18"/>
+BURST
+<text class="w-ink t-sm" x="179" y="184" text-anchor="middle">Claude</text>
+<path class="w-lead" d="M248 125h64" stroke-width="2.5"/>
+<path class="w-lead" d="M306 118l8 7-8 7" stroke-width="2.5"/>
+<path d="M342 92h30l8 10h52a6 6 0 0 1 6 6v50a6 6 0 0 1-6 6h-90a6 6 0 0 1-6-6v-60a6 6 0 0 1 6-6z" fill="#6FA8DC"/>
+<path d="M342 110h96a6 6 0 0 1 6 6v42a6 6 0 0 1-6 6h-96a6 6 0 0 1-6-6v-42a6 6 0 0 1 6-6z" fill="#8FC0E8"/>
+<text class="w-ink t-sm" x="390" y="184" text-anchor="middle">Applications</text>
+</svg>
+<figcaption>Drag the Claude icon onto the Applications folder. That installs it.</figcaption>
+</figure>'''.replace("BURST", _burst_dmg)
+
 SCRIPT = r"""
 <script>
 (function(){
   function fallbackCopy(t){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
+  var page=document.querySelector('.page');
+  if(page){
+    var picks=document.querySelectorAll('[data-os-pick]');
+    var setOS=function(os){
+      page.setAttribute('data-platform',os);
+      Array.prototype.forEach.call(picks,function(b){
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-os-pick')===os));
+      });
+      try{localStorage.setItem('ccd-os',os);}catch(e){}
+    };
+    Array.prototype.forEach.call(picks,function(b){
+      b.addEventListener('click',function(){setOS(b.getAttribute('data-os-pick'));});
+    });
+    setOS(page.getAttribute('data-platform')||'win');
+  }
   document.querySelectorAll('[data-copy]').forEach(function(btn){
     btn.addEventListener('click',function(){
       var el=document.getElementById(btn.getAttribute('data-copy'));if(!el)return;
@@ -333,7 +390,12 @@ FOOTER = '<footer>Checked against the official Claude Code documentation on 19 S
 
 # ---------------------------------------------------------------- PART 1
 PART1 = r"""
-<div class="page">
+<div class="page" data-platform="win"><script>
+(function(){try{var p=document.currentScript.parentElement,s=null;
+try{s=localStorage.getItem('ccd-os');}catch(e){}
+if(!s){var u=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||navigator.userAgent||'';s=/mac/i.test(u)?'mac':'win';}
+p.setAttribute('data-platform',s);}catch(e){}})();
+</script>
   <nav class="rail" aria-label="Sections">
     <p class="rail-head">Part 1 · Get set up</p>
     <a href="#s0"><b>·</b>What this is</a>
@@ -348,14 +410,19 @@ PART1 = r"""
     <header>
       <div class="eyebrow"><b>Part 1 of 2</b> Get set up</div>
       <h1>Claude Code Day One</h1>
-      <p class="dek">Claude Code is an AI assistant that works on your computer, not just in a chat window. This first part gets it installed on your PC: four small steps, about 10 minutes, no technical knowledge needed. Part 2 is one message you paste, and it does everything else.</p>
+      <p class="dek">Claude Code is an AI assistant that works on your computer, not just in a chat window. This first part gets it installed: four small steps, about 10 minutes, no technical knowledge needed. Part 2 is one message you paste, and it does everything else.</p>
       <div class="route">
         <div><b>Account</b><span>~5 min</span><small>Claude Pro or Max</small></div>
-        <div><b>Install the app</b><span>~3 min</span><small>Like any Windows program</small></div>
+        <div><b>Install the app</b><span>~3 min</span><small><span class="os-win">Like any Windows program</span><span class="os-mac">Like any Mac app</span></small></div>
         <div><b>Open it</b><span>~2 min</span><small>Sign in, click Code</small></div>
         <div><b>CELL4A</b><span>CELL4B</span><small>CELL4C</small></div>
       </div>
-      <p class="route-note">Written for a PC running Windows 10 or 11.</p>
+      <div class="osbar">
+        <p>Which computer are you setting up?</p>
+        <button type="button" class="osbtn" data-os-pick="win" aria-pressed="true">Windows PC</button>
+        <button type="button" class="osbtn" data-os-pick="mac" aria-pressed="false">Mac</button>
+        <small>A few steps differ. Pick one and the rest of the page follows along.</small>
+      </div>
     </header>
 
     <section id="s0">
@@ -394,24 +461,40 @@ PART1 = r"""
       <h2>Three things to have ready</h2>
       <ul>
         <li><b>A Claude account on the Pro or Max plan.</b> Claude Code is included in both. Pro is the entry plan; Max is for people using it for hours a day. Sign up or upgrade at <a href="https://claude.com/pricing">claude.com/pricing</a>.</li>
-        <li><b>A PC running Windows 10 or 11.</b> To check: open <i>Settings</i> from the Start menu, then <i>System</i>, then <i>About</i>.</li>
-        <li><b>Permission to install programs on it.</b> On your own PC you have it. On a hospital- or practice-managed laptop, installs are often blocked; if so, ask your IT person to install the Claude app for you, or use a personal PC.</li>
+        <li class="os-win"><b>A PC running Windows 10 or 11.</b> To check: open <i>Settings</i> from the Start menu, then <i>System</i>, then <i>About</i>.</li>
+        <li class="os-mac"><b>A Mac running macOS 13 or newer.</b> To check: click the Apple menu at the top left of the screen, then <i>About This Mac</i>.</li>
+        <li><b>Permission to install programs on it.</b> On your own computer you have it. On a hospital- or practice-managed machine, installs are often blocked; if so, ask your IT person to install the Claude app for you, or use a personal one.</li>
       </ul>
-      <p class="cap">Along the way Windows will ask a few times, <i>Do you want to allow this app to make changes to your device?</i> That's normal. Click <b>Yes</b>.</p>
+      <p class="cap os-win">Along the way Windows will ask a few times, <i>Do you want to allow this app to make changes to your device?</i> That's normal. Click <b>Yes</b>.</p>
+      <p class="cap os-mac">Along the way your Mac may ask you to confirm opening an app downloaded from the internet, and later for your Mac password. That's normal.</p>
     </section>
 
     <section id="s2">
       <div class="step">STEP 2 <em>Install the app · 3 min</em></div>
       <h2>Install the Claude app</h2>
-      <ol>
-        <li>Go to <a href="https://claude.com/download">claude.com/download</a> and choose the Windows version.</li>
-        <li>Open the downloaded installer and let it run. If Windows asks whether to allow changes, click <b>Yes</b>.</li>
-        <li>Open Claude and sign in with your account.</li>
-        <li>At the top of the window, click the <b>Code</b> tab. That's Claude Code.</li>
-      </ol>
-      FIG_DOWNLOAD
-      FIG_UAC
-      <p class="cap">There's also a version that runs in a plain text window (PowerShell). You don't need it today; Part 2 installs it quietly for later.</p>
+      <div class="os-win">
+        <ol>
+          <li>Go to <a href="https://claude.com/download">claude.com/download</a> and choose the Windows version.</li>
+          <li>Open the downloaded installer and let it run. If Windows asks whether to allow changes, click <b>Yes</b>.</li>
+          <li>Open Claude and sign in with your account.</li>
+          <li>At the top of the window, click the <b>Code</b> tab. That's Claude Code.</li>
+        </ol>
+        FIG_DOWNLOAD
+        FIG_UAC
+        <p class="cap">There's also a version that runs in a plain text window (PowerShell). You don't need it today; Part 2 installs it quietly for later.</p>
+      </div>
+      <div class="os-mac">
+        <ol>
+          <li>Go to <a href="https://claude.com/download">claude.com/download</a> and choose the macOS version.</li>
+          <li>Open the downloaded file. A window appears with the Claude icon and your Applications folder.</li>
+          <li>Drag the Claude icon onto <b>Applications</b>. That installs it.</li>
+          <li>Open Claude from Applications (or press <kbd>⌘</kbd>+<kbd>Space</kbd>, type <code>Claude</code>, press Enter) and sign in.</li>
+          <li>At the top of the window, click the <b>Code</b> tab. That's Claude Code.</li>
+        </ol>
+        FIG_DOWNLOAD_MAC
+        FIG_DMG
+        <p class="cap">There's also a version that runs in a plain text window (Terminal). You don't need it today; Part 2 installs it quietly for later.</p>
+      </div>
     </section>
 
     <section id="s3">
@@ -419,7 +502,8 @@ PART1 = r"""
       <h2>Pick a folder to work in</h2>
       <p>Claude Code works inside one folder at a time. It can see and change what's in that folder and nothing outside it.</p>
       <ol>
-        <li>Open <b>File Explorer</b> (the yellow folder icon in the taskbar), go to <b>Documents</b>, and make a new folder called <b>Claude</b>. If your Documents folder lives in OneDrive, that's fine.</li>
+        <li class="os-win">Open <b>File Explorer</b> (the yellow folder icon in the taskbar), go to <b>Documents</b>, and make a new folder called <b>Claude</b>. If your Documents folder lives in OneDrive, that's fine.</li>
+        <li class="os-mac">Open <b>Finder</b> (the blue smiling face in the Dock), go to <b>Documents</b>, and make a new folder called <b>Claude</b>. If your Documents folder lives in iCloud Drive, that's fine.</li>
         <li>Back in the Code tab, when it asks which folder to open, choose that one.</li>
         <li>If it asks whether you trust the folder: yes. It's yours.</li>
       </ol>
@@ -428,16 +512,19 @@ PART1 = r"""
     <section id="s4">
       <div class="step">STEP 4 <em>Look around · 2 min</em></div>
       <h2>What you're looking at</h2>
-      FIG_APP
-      <p style="margin-top:16px">The <b>mode setting</b> at (3) is the only one worth knowing now. <b>Auto</b> means Claude does the work and tells you what it did, with built-in safety checks. <b>Manual</b> means it asks before each action. Leave it on Auto. To change it, click it or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. There is also a panel for files Claude changed and a Terminal; <kbd>Ctrl</kbd>+<kbd>`</kbd> shows or hides it.</p>
+      <div class="os-win">FIG_APP</div>
+      <div class="os-mac">FIG_APP_MAC</div>
+      <p style="margin-top:16px">The <b>mode setting</b> at (3) is the only one worth knowing now. <b>Auto</b> means Claude does the work and tells you what it did, with built-in safety checks. <b>Manual</b> means it asks before each action. Leave it on Auto. To change it, click it.<span class="os-win"> There is also a panel for files Claude changed and a Terminal; <kbd>Ctrl</kbd>+<kbd>`</kbd> shows or hides it.</span><span class="os-mac"> There is also a panel for files Claude changed and a Terminal, which you can show or hide from the app's menus.</span></p>
       <p class="cap">When Claude does ask permission, it looks like this. <b>1</b> means yes. <b>2</b> means yes, and stop asking for this kind of thing. <b>3</b> means no, and you tell it what to do instead.</p>
       <div class="dialog">
         <div class="t">Command</div>
-        <div class="c">winget install JohnMacFarlane.Pandoc</div>
+        <div class="c os-win">winget install JohnMacFarlane.Pandoc</div>
+        <div class="c os-mac">brew install pandoc</div>
         <div class="d">Install pandoc so I can convert Word documents to other formats</div>
         <div class="q">Do you want to proceed?</div>
         <div class="o sel">❯ 1. Yes</div>
-        <div class="o">&nbsp;&nbsp;2. Yes, and don't ask again for winget install commands in this project</div>
+        <div class="o os-win">&nbsp;&nbsp;2. Yes, and don't ask again for winget install commands in this project</div>
+        <div class="o os-mac">&nbsp;&nbsp;2. Yes, and don't ask again for brew install commands in this project</div>
         <div class="o">&nbsp;&nbsp;3. No, and tell Claude what to do differently (esc)</div>
       </div>
       <h3>Say hello (optional)</h3>
@@ -619,7 +706,9 @@ DESC2 = "Part 2 of 2. One message to paste into Claude Code that installs and se
 
 def render(body):
     body = body.replace('FOOTER', FOOTER)
-    for key, svg in (('FIG_DOWNLOAD', FIG_DOWNLOAD), ('FIG_UAC', FIG_UAC),
+    for key, svg in (('FIG_DOWNLOAD_MAC', FIG_DOWNLOAD_MAC), ('FIG_APP_MAC', FIG_APP_MAC),
+                     ('FIG_DMG', FIG_DMG),
+                     ('FIG_DOWNLOAD', FIG_DOWNLOAD), ('FIG_UAC', FIG_UAC),
                      ('FIG_APP', FIG_APP), ('FIG_PASTE', FIG_PASTE)):
         body = body.replace(key, svg)
     return body.replace('PROMPT_TEXT', html.escape(PROMPT)).replace('PROMPT_LINES', str(PROMPT_LINES))

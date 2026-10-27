@@ -546,10 +546,10 @@ p.setAttribute('data-platform',s);}catch(e){}})();
       </ul>
       <h3>Install it</h3>
       <ol>
-        <li>In Chrome, open <a href="https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn">the Claude listing on the Chrome Web Store</a>.</li>
-        <li>Click <b>Add to Chrome</b>, then <b>Add extension</b> when Chrome asks.</li>
-        <li>Click the jigsaw-piece icon at the top right of Chrome and pin Claude, so you can always see it.</li>
-        <li>Click the Claude icon and sign in with the same account.</li>
+        <li>In Chrome, open <a href="https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn">the Claude listing on the Chrome Web Store</a>. Use this link: the listing is called just "Claude", and searching the store turns up lookalikes. The publisher should read <b>Anthropic</b>.</li>
+        <li>Click <b>Add to Chrome</b> and approve the permissions Chrome asks for. It needs them to read pages and to click and type for you.</li>
+        <li>Click the jigsaw-piece icon at the top right of Chrome, then the pin next to <b>Claude</b>, so it stays visible.</li>
+        <li>Click the Claude icon to open its side panel, and sign in with the same account.</li>
       </ol>
       <figure class="fig">
 <svg viewBox="0 0 560 250" role="img" aria-labelledby="figchr"><title id="figchr">The Claude listing on the Chrome Web Store with a blue Add to Chrome button</title>
@@ -562,7 +562,7 @@ p.setAttribute('data-platform',s);}catch(e){}})();
 <rect class="w-dark" x="40" y="86" width="64" height="64" rx="15"/>
 <path class="w-clay" d="M72.0,118.0 L69.7,112.0 L72.0,98.0 L74.3,112.0 Z M72.0,118.0 L73.3,111.7 L82.8,101.2 L77.2,114.2 Z M72.0,118.0 L76.5,113.4 L90.2,109.7 L78.4,117.6 Z M72.0,118.0 L78.3,116.6 L91.8,120.8 L77.6,121.1 Z M72.0,118.0 L78.0,120.2 L87.1,131.1 L75.0,123.7 Z M72.0,118.0 L75.9,123.1 L77.6,137.2 L71.5,124.4 Z M72.0,118.0 L72.5,124.4 L66.4,137.2 L68.1,123.1 Z M72.0,118.0 L69.0,123.7 L56.9,131.1 L66.0,120.2 Z M72.0,118.0 L66.4,121.1 L52.2,120.8 L65.7,116.6 Z M72.0,118.0 L65.6,117.6 L53.8,109.7 L67.5,113.4 Z M72.0,118.0 L66.8,114.2 L61.2,101.2 L70.7,111.7 Z"/>
 <text class="w-ink" x="120" y="104" style="font-size:17px;font-weight:700">Claude</text>
-<text class="w-mute t-sm" x="120" y="124">claude.ai</text>
+<text class="w-mute t-sm" x="120" y="124">Anthropic</text>
 <text class="w-mute t-sm" x="120" y="146">Claude reads the page, then clicks, types and fills forms.</text>
 <rect x="402" y="88" width="118" height="34" rx="17" fill="#1A73E8"/>
 <text x="461" y="110" text-anchor="middle" fill="#FFFFFF" style="font-size:13px;font-weight:700">Add to Chrome</text>
@@ -571,10 +571,19 @@ p.setAttribute('data-platform',s);}catch(e){}})();
 </svg>
 <figcaption>Click <b>Add to Chrome</b>, then confirm when Chrome asks.</figcaption>
 </figure>
-      <h3>Using it from the app</h3>
-      <p>You don't have to leave the Claude app to use it. The extension appears there as a connector: switch it on in a conversation, and Claude can drive your browser for you. So you can start a browser task from the Code tab without changing windows.</p>
+      <h3>Using it from the Claude app</h3>
+      <p>You don't have to work in the side panel. The extension also shows up inside the Claude app, so Claude can navigate, click and fill forms in your browser from there. Switch it on once:</p>
+      <ol>
+        <li>In the Claude app, click your initials at the bottom left, then <b>Settings</b>.</li>
+        <li>Go to <b>Customize</b>, then <b>Connectors</b>.</li>
+        <li>Find <b>Claude in Chrome</b>, click <b>Configure</b>, and turn it on.</li>
+      </ol>
+      <p>It stays off by default, so you switch it on in a conversation when you actually want Claude in your browser.</p>
+      <h3>Keep it on a short leash</h3>
+      <p>Next to the message box there's an approval setting. Leave it on <b>Manually approve</b> while you're learning, so Claude pauses and asks before each action. There is also a <b>Skip all approvals</b> option, which turns off the checks on what it does. Don't use it.</p>
       <div class="callout">
-        <p><b>Two rules.</b> It acts on pages you are already signed in to, so watch what it does the first few times and stay at the keyboard. And keep it away from anything holding patient data: no electronic record, no patient portal, no insurer site with real records on screen.</p>
+        <p><b>Read this before you switch it on.</b> Claude takes screenshots of the tabs it is working in, and whatever is visible in them becomes part of the conversation. Not just what you asked about: whatever is on screen.</p>
+        <p>So keep it off the electronic record, patient portals and insurer sites, and close anything sensitive before you start it. Anthropic's own guidance is to skip health records and banking entirely, and to run it in a separate Chrome profile that isn't signed in to anything sensitive. For you that is the safer setup.</p>
       </div>
     </section>
 

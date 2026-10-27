@@ -187,12 +187,19 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 .parthead h2{font-size:30px;margin-bottom:6px}
 .parthead p{font-size:17.5px;color:var(--ink-2);max-width:62ch}
 .rail-head + .rail-head,.rail a + .rail-head{margin-top:20px}
-.osbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:22px 0 4px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-.osbar p{margin:0;font-size:14.5px;font-weight:700;margin-right:2px}
-.osbtn{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line-strong);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .15s,color .15s}
+.osbar{margin:26px 0 10px;padding:20px 22px 18px;border:2px solid var(--accent-line);border-radius:14px;background:var(--accent-soft)}
+.osbar-q{margin:0 0 14px;font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.012em}
+.osbtns{display:flex;flex-wrap:wrap;gap:10px}
+.osbtn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:16px;font-weight:700;color:var(--ink);background:var(--surface);border:2px solid var(--line-strong);border-radius:999px;padding:11px 22px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
 .osbtn:hover{border-color:var(--accent)}
+.osbtn .tick{width:15px;font-size:13px;opacity:0;transition:opacity .15s}
 .osbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.osbar small{flex-basis:100%;font-size:13px;color:var(--muted);margin-top:2px}
+.osbtn[aria-pressed="true"] .tick{opacity:1}
+.osbar small{display:block;margin-top:13px;font-size:14px;color:var(--ink-2)}
+.rail-os{margin-top:22px;padding-left:14px}
+.railbtn{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:7px;padding:6px 10px;margin-bottom:6px;cursor:pointer}
+.railbtn:hover{border-color:var(--accent);color:var(--ink)}
+.railbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 [data-platform="win"] .os-mac,[data-platform="mac"] .os-win{display:none}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>

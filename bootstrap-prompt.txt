@@ -1,4 +1,4 @@
-I'm a doctor, not a technical person. I've never used a command line and I don't know programming. Treat me as a smart person who is completely new to these tools. Set up this Windows PC so I can use Claude Code for my day-to-day work, and teach me as we go.
+I'm a doctor, not a technical person. I've never used a command line and I don't know programming. Treat me as a smart person who is completely new to these tools. I'm talking to you inside the Claude desktop app, on the Code tab — not a terminal window. Set up this Windows PC so I can use you for my day-to-day work, and teach me as we go.
 
 HOW TO TALK TO ME
 - Plain English. The first time you use a technical word (terminal, PowerShell, folder path, package, server, repository), explain it in one short sentence.
@@ -12,7 +12,7 @@ SAFETY RULES
 - Only use official installers: winget (Microsoft's built-in installer tool) or the tool maker's own installer. No scripts from random websites.
 - Windows will sometimes show a box asking "Do you want to allow this app to make changes to your device?" Warn me before a step that will trigger it, and tell me to click Yes.
 - Some things you can't do for me: clicking through an installer window, and any login screen. For those, tell me exactly what to click, and wait for me to say "done".
-- If a command has to run in a separate window, give it to me in a box and tell me exactly where to paste it (the Terminal panel in this app, or PowerShell from the Start menu).
+- You can run commands yourself here. Only hand me one if you genuinely can't run it, and then put it in a box and tell me exactly where to paste it (the Terminal panel in this app, or PowerShell from the Start menu).
 - Never write passwords, keys or patient information into any file. If you need a password, tell me where to type it myself.
 - I'm a physician. Remind me once that patient-identifiable information shouldn't go into our chats or files unless my practice has approved it, and never encourage me to paste it.
 - If my Documents folder lives inside OneDrive, that's fine; use it as it is.
@@ -25,11 +25,11 @@ STEP 1 - A FEW QUESTIONS (ask all of these in one message, then wait for my answ
 4. Have I used an AI chat tool before (ChatGPT, Claude)? So you know how much to explain.
 
 STEP 2 - LOOK AROUND
-Check what this PC has: Windows version, whether winget works, Git for Windows, Python, Node, and whether the `claude` command works from PowerShell. Show me a simple three-column list: Tool, What it's for (in plain words), Status (already here / will install / not needed).
+Check what this PC has: Windows version, whether winget works, Git for Windows, Python, Node. The desktop app already includes Claude Code, so don't install the command-line version — only mention it if something we actually do later turns out to need it. Show me a simple three-column list: Tool, What it's for (in plain words), Status (already here / will install / not needed).
 
 STEP 3 - THE BASICS (everyone gets these)
 - Git for Windows: Claude Code works best on Windows with it, and it doubles as a safety net that keeps a history of every change so nothing is ever lost. Set it up with my name and email. I'll never need to touch it.
-- The `claude` command itself, if it isn't installed yet, so I can also use you from a terminal later. Then run `claude doctor` and fix anything it flags.
+- Nothing else by default. Don't install anything I won't use. If you hit a real blocker later, tell me what it is and what it needs before installing.
 
 STEP 4 - ONLY WHAT MY ANSWERS CALL FOR (explain each in one sentence before installing it)
 - Documents and letters: nothing extra. Show me how to drop a Word file or PDF into my folder and ask you to work on it. If I use Office, install pandoc so you can convert between formats.
@@ -43,15 +43,14 @@ STEP 5 - SET UP CLAUDE CODE FOR ME
 1. Create a folder called "Claude" in my Documents, with a subfolder for each thing I said I want help with. Explain that I drop files there for you to work on.
 2. Write my memory file (the CLAUDE.md file in my .claude folder) so every future chat starts knowing: I'm a doctor and not technical; explain in plain English and define terms; keep messages short; never ask me to edit files by hand; never put passwords or patient information in files; ask before deleting or overwriting anything; and which tools are now on this PC. Show it to me, then adjust anything I want changed.
 3. Set my permissions so you never need to ask before reading files or looking inside folders, but always ask before deleting, overwriting, sending, publishing or installing anything. Tell me in two sentences what you changed.
-4. Add the official Claude Code docs plug-in so you can look up your own manual when I ask how something works:
-   claude mcp add --transport http --scope user claude-code-docs https://code.claude.com/docs/mcp
+4. Add the official Claude Code docs plug-in so you can look up your own manual when I ask how something works. The documentation server is https://code.claude.com/docs/mcp — add it whichever way actually works in this app (the /mcp command, settings, or `claude mcp add --transport http --scope user claude-code-docs <url>` if the command-line tool is present). Tell me in one line which way you used, and confirm it answered a test question.
 5. Turn on auto-memory if it's available, so you remember things I tell you between chats, and tell me how to see what you've remembered.
 
 STEP 6 - CHECK EVERYTHING
-Show me the three-column list again with everything green. Run `claude doctor` once more.
+Show me the three-column list again with everything green. Then prove each one works with a one-line test and show me the results.
 
 STEP 7 - TEACH ME (one screen, plain words)
-The ten things I'll use most: start a new job (/clear), bring back an old chat (/resume), undo (/rewind, or just saying "undo that"), stop you (Esc), give you a file (type @ and the file name; tell me if dragging a file into the chat also works here), switch between "ask me first" and "just do it" (the mode selector next to the send button), make you remember something (just say "remember that..."), change how you work (just ask in words), update you (claude update), and what to say when something goes wrong ("here's the error, fix it"). Save this as "Claude cheat sheet.md" in my Claude folder and put a copy on my Desktop.
+The ten things I'll use most: start a new job (/clear), bring back an old chat (/resume), undo (/rewind, or just saying "undo that"), stop you (Esc), give you a file (type @ and the file name; tell me if dragging a file into the chat also works here), switch between "ask me first" and "just do it" (the mode selector next to the send button), make you remember something (just say "remember that..."), change how you work (just ask in words), how the app keeps itself up to date, and what to say when something goes wrong ("here's the error, fix it"). Save this as "Claude cheat sheet.md" in my Claude folder and put a copy on my Desktop.
 
 STEP 8 - FIRST WIN
 Based on what I said in Step 1, suggest one real ten-minute task we can do right now, and do it with me.

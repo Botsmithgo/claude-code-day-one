@@ -495,7 +495,7 @@ p.setAttribute('data-platform',s);}catch(e){}})();
         </ol>
         FIG_DOWNLOAD
         FIG_UAC
-        <p class="cap">There's also a version that runs in a plain text window (PowerShell). You don't need it today; Part 2 installs it quietly for later.</p>
+        <p class="cap">The app already includes Claude Code, so there is nothing else to install. There is also a command-line version for developers; you do not need it.</p>
       </div>
       <div class="os-mac">
         <ol>
@@ -507,7 +507,7 @@ p.setAttribute('data-platform',s);}catch(e){}})();
         </ol>
         FIG_DOWNLOAD_MAC
         FIG_DMG
-        <p class="cap">There's also a version that runs in a plain text window (Terminal). You don't need it today; Part 2 installs it quietly for later.</p>
+        <p class="cap">The app already includes Claude Code, so there is nothing else to install. There is also a command-line version for developers; you do not need it.</p>
       </div>
     </section>
 
@@ -705,7 +705,7 @@ PART2 = r"""
       <ol>
         <li>Tell Claude: <i>Something's wrong, here's what I see: [paste or describe it]. Fix it.</i> That solves most things.</li>
         <li>Close the app and open it again.</li>
-        <li>Ask Claude to run its own check-up. (It knows the command: <code>claude doctor</code>.)</li>
+        <li>Ask Claude: <i>Check your own setup and tell me if anything is broken.</i></li>
         <li>Still stuck? Take a screenshot (<kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>) and send it to whoever gave you this page.</li>
       </ol>
     </section>

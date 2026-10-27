@@ -343,7 +343,7 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 </svg>
 <figcaption>Windows asks this before an app installs anything. It is normal and you will see it a few times.</figcaption>
 </figure>
-        <p class="cap">There's also a version that runs in a plain text window (PowerShell). You don't need it today; Part 2 installs it quietly for later.</p>
+        <p class="cap">The app already includes Claude Code, so there is nothing else to install. There is also a command-line version for developers; you do not need it.</p>
       </div>
       <div class="os-mac">
         <ol>
@@ -388,7 +388,7 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
 </svg>
 <figcaption>Drag the Claude icon onto the Applications folder. That installs it.</figcaption>
 </figure>
-        <p class="cap">There's also a version that runs in a plain text window (Terminal). You don't need it today; Part 2 installs it quietly for later.</p>
+        <p class="cap">The app already includes Claude Code, so there is nothing else to install. There is also a command-line version for developers; you do not need it.</p>
       </div>
     </section>
 
@@ -561,8 +561,8 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-si
       <h2>Paste this as your first message</h2>
       <p>Press the copy button, click into the chat box, paste, and press Enter. The whole block goes in as one message. It's written in plain English on purpose, so read it if you like.</p>
       <div class="prompt">
-        <div class="prompt-head"><span class="dot"></span><span class="name">your first message</span><span class="meta">57 lines</span><button class="copy" data-copy="prompt-text">Copy the whole message</button></div>
-        <pre id="prompt-text">I&#x27;m a doctor, not a technical person. I&#x27;ve never used a command line and I don&#x27;t know programming. Treat me as a smart person who is completely new to these tools. Set up this Windows PC so I can use Claude Code for my day-to-day work, and teach me as we go.
+        <div class="prompt-head"><span class="dot"></span><span class="name">your first message</span><span class="meta">56 lines</span><button class="copy" data-copy="prompt-text">Copy the whole message</button></div>
+        <pre id="prompt-text">I&#x27;m a doctor, not a technical person. I&#x27;ve never used a command line and I don&#x27;t know programming. Treat me as a smart person who is completely new to these tools. I&#x27;m talking to you inside the Claude desktop app, on the Code tab — not a terminal window. Set up this Windows PC so I can use you for my day-to-day work, and teach me as we go.
 
 HOW TO TALK TO ME
 - Plain English. The first time you use a technical word (terminal, PowerShell, folder path, package, server, repository), explain it in one short sentence.
@@ -576,7 +576,7 @@ SAFETY RULES
 - Only use official installers: winget (Microsoft&#x27;s built-in installer tool) or the tool maker&#x27;s own installer. No scripts from random websites.
 - Windows will sometimes show a box asking &quot;Do you want to allow this app to make changes to your device?&quot; Warn me before a step that will trigger it, and tell me to click Yes.
 - Some things you can&#x27;t do for me: clicking through an installer window, and any login screen. For those, tell me exactly what to click, and wait for me to say &quot;done&quot;.
-- If a command has to run in a separate window, give it to me in a box and tell me exactly where to paste it (the Terminal panel in this app, or PowerShell from the Start menu).
+- You can run commands yourself here. Only hand me one if you genuinely can&#x27;t run it, and then put it in a box and tell me exactly where to paste it (the Terminal panel in this app, or PowerShell from the Start menu).
 - Never write passwords, keys or patient information into any file. If you need a password, tell me where to type it myself.
 - I&#x27;m a physician. Remind me once that patient-identifiable information shouldn&#x27;t go into our chats or files unless my practice has approved it, and never encourage me to paste it.
 - If my Documents folder lives inside OneDrive, that&#x27;s fine; use it as it is.
@@ -589,11 +589,11 @@ STEP 1 - A FEW QUESTIONS (ask all of these in one message, then wait for my answ
 4. Have I used an AI chat tool before (ChatGPT, Claude)? So you know how much to explain.
 
 STEP 2 - LOOK AROUND
-Check what this PC has: Windows version, whether winget works, Git for Windows, Python, Node, and whether the `claude` command works from PowerShell. Show me a simple three-column list: Tool, What it&#x27;s for (in plain words), Status (already here / will install / not needed).
+Check what this PC has: Windows version, whether winget works, Git for Windows, Python, Node. The desktop app already includes Claude Code, so don&#x27;t install the command-line version — only mention it if something we actually do later turns out to need it. Show me a simple three-column list: Tool, What it&#x27;s for (in plain words), Status (already here / will install / not needed).
 
 STEP 3 - THE BASICS (everyone gets these)
 - Git for Windows: Claude Code works best on Windows with it, and it doubles as a safety net that keeps a history of every change so nothing is ever lost. Set it up with my name and email. I&#x27;ll never need to touch it.
-- The `claude` command itself, if it isn&#x27;t installed yet, so I can also use you from a terminal later. Then run `claude doctor` and fix anything it flags.
+- Nothing else by default. Don&#x27;t install anything I won&#x27;t use. If you hit a real blocker later, tell me what it is and what it needs before installing.
 
 STEP 4 - ONLY WHAT MY ANSWERS CALL FOR (explain each in one sentence before installing it)
 - Documents and letters: nothing extra. Show me how to drop a Word file or PDF into my folder and ask you to work on it. If I use Office, install pandoc so you can convert between formats.
@@ -607,15 +607,14 @@ STEP 5 - SET UP CLAUDE CODE FOR ME
 1. Create a folder called &quot;Claude&quot; in my Documents, with a subfolder for each thing I said I want help with. Explain that I drop files there for you to work on.
 2. Write my memory file (the CLAUDE.md file in my .claude folder) so every future chat starts knowing: I&#x27;m a doctor and not technical; explain in plain English and define terms; keep messages short; never ask me to edit files by hand; never put passwords or patient information in files; ask before deleting or overwriting anything; and which tools are now on this PC. Show it to me, then adjust anything I want changed.
 3. Set my permissions so you never need to ask before reading files or looking inside folders, but always ask before deleting, overwriting, sending, publishing or installing anything. Tell me in two sentences what you changed.
-4. Add the official Claude Code docs plug-in so you can look up your own manual when I ask how something works:
-   claude mcp add --transport http --scope user claude-code-docs https://code.claude.com/docs/mcp
+4. Add the official Claude Code docs plug-in so you can look up your own manual when I ask how something works. The documentation server is https://code.claude.com/docs/mcp — add it whichever way actually works in this app (the /mcp command, settings, or `claude mcp add --transport http --scope user claude-code-docs &lt;url&gt;` if the command-line tool is present). Tell me in one line which way you used, and confirm it answered a test question.
 5. Turn on auto-memory if it&#x27;s available, so you remember things I tell you between chats, and tell me how to see what you&#x27;ve remembered.
 
 STEP 6 - CHECK EVERYTHING
-Show me the three-column list again with everything green. Run `claude doctor` once more.
+Show me the three-column list again with everything green. Then prove each one works with a one-line test and show me the results.
 
 STEP 7 - TEACH ME (one screen, plain words)
-The ten things I&#x27;ll use most: start a new job (/clear), bring back an old chat (/resume), undo (/rewind, or just saying &quot;undo that&quot;), stop you (Esc), give you a file (type @ and the file name; tell me if dragging a file into the chat also works here), switch between &quot;ask me first&quot; and &quot;just do it&quot; (the mode selector next to the send button), make you remember something (just say &quot;remember that...&quot;), change how you work (just ask in words), update you (claude update), and what to say when something goes wrong (&quot;here&#x27;s the error, fix it&quot;). Save this as &quot;Claude cheat sheet.md&quot; in my Claude folder and put a copy on my Desktop.
+The ten things I&#x27;ll use most: start a new job (/clear), bring back an old chat (/resume), undo (/rewind, or just saying &quot;undo that&quot;), stop you (Esc), give you a file (type @ and the file name; tell me if dragging a file into the chat also works here), switch between &quot;ask me first&quot; and &quot;just do it&quot; (the mode selector next to the send button), make you remember something (just say &quot;remember that...&quot;), change how you work (just ask in words), how the app keeps itself up to date, and what to say when something goes wrong (&quot;here&#x27;s the error, fix it&quot;). Save this as &quot;Claude cheat sheet.md&quot; in my Claude folder and put a copy on my Desktop.
 
 STEP 8 - FIRST WIN
 Based on what I said in Step 1, suggest one real ten-minute task we can do right now, and do it with me.</pre>
@@ -733,7 +732,7 @@ Based on what I said in Step 1, suggest one real ten-minute task we can do right
       <ol>
         <li>Tell Claude: <i>Something's wrong, here's what I see: [paste or describe it]. Fix it.</i> That solves most things.</li>
         <li>Close the app and open it again.</li>
-        <li>Ask Claude to run its own check-up. (It knows the command: <code>claude doctor</code>.)</li>
+        <li>Ask Claude: <i>Check your own setup and tell me if anything is broken.</i></li>
         <li>Still stuck? Take a screenshot (<kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>) and send it to whoever gave you this page.</li>
       </ol>
     </section>
